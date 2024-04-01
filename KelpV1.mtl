@@ -1,0 +1,10 @@
+newmtl kelp
+map_Kd kelp.jpeg
+Kd 1 1 1
+d 1
+
+newmtl rock
+map_Kd rock.png
+Kd 1 1 1
+d 1
+

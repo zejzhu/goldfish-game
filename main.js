@@ -171,7 +171,7 @@ AFRAME.registerComponent("three-min", {
     // Wait for model to load.
     this.el.addEventListener("model-loaded", () => {
       var delayInMilliseconds = 180000; //180 seconds
-      var delayInMilliseconds = 10000; //180 seconds TESTING
+      // var delayInMilliseconds = 10000; //180 seconds TESTING
 
       setTimeout(function () {
         //algae death transition goes here  - KEVIN

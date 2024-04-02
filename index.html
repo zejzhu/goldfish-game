@@ -30,7 +30,7 @@
     </style>
   </head>
   <body>
-    <a-scene 
+    <a-scene
       id="main-scene"
       fog="type:linear; color:#55AA22; near:125; far:125;"
     >
@@ -73,7 +73,7 @@
         <img id="kelp01" src="Assets/dialogues/youkelp01.png" />
         <img id="kelp02" src="Assets/dialogues/youkelp02.png" />
       </a-assets>
-      
+
       <!-- TEXTBOXES -->
       <!-- On click note -->
       <a-entity id="note-1" visible="false"
@@ -297,19 +297,19 @@
 
             document.addEventListener("keydown", function (event) {
               if (event.key === "h") {
-                if(first == true){
+                if (first == true) {
                   console.log(first);
                   box1.object3D.visible = false;
                   box2.object3D.visible = true;
                   second = true;
                   first = false;
-                } else if(second == true){
+                } else if (second == true) {
                   console.log(second);
                   box2.object3D.visible = false;
                   box3.object3D.visible = true;
                   third = true;
                   second = false;
-                } else if(third == true){
+                } else if (third == true) {
                   console.log(third);
                   box3.object3D.visible = false;
                   third = false;
@@ -341,7 +341,6 @@
 
           if (timeRemaining < 0) {
             clearInterval(x);
-            // switchScenes();
           }
         }, 1000);
 
@@ -399,7 +398,7 @@
       <div id="overlay"></div>
 
       <script>
-        function triggerToiletSceneAnimations() {
+        function triggerToiletSceneAnimations(scene) {
           var cameraRig = document.getElementById("cameraRig");
           cameraRig.setAttribute(
             "animation",
@@ -427,7 +426,9 @@
                 overlay.style.opacity = "1";
 
                 setTimeout(function () {
-                  // window.location.href = "https://google.com";
+                  document.getElementById("toilet-scene").style.display =
+                    "none";
+                  document.getElementById(scene).style.display = "block";
                 }, 5000);
               }, 500);
             }, 4000);

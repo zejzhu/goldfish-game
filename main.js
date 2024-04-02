@@ -48,19 +48,19 @@ AFRAME.registerComponent("click-kelp", {
       var textbox = document.getElementById("kelp-1");
       textbox.object3D.visible = true;
       //scene.setAttribute("far", "90"); //fog enters
-      scene1.setAttribute('fog', {
+      scene1.setAttribute("fog", {
         color: "#6622AA",
         far: "90",
-        near: "0"
+        near: "0",
       });
     }
     if (holder == 2) {
       var textbox = document.getElementById("kelp-2");
       textbox.object3D.visible = true;
       //fog.setAttribute("far", "30"); //fog stron
-      scene1.setAttribute('fog', {
+      scene1.setAttribute("fog", {
         color: "#6622AA",
-        far: "30"
+        far: "30",
       });
     }
     if (holder == 3) {
@@ -69,7 +69,8 @@ AFRAME.registerComponent("click-kelp", {
       var bgm = document.getElementById("fish-tank");
       bgm.pause();
       document.getElementById("main-scene").style.display = "none";
-      document.getElementById("kelp-scene").style.display = "block";
+      document.getElementById("toilet-scene").style.display = "block";
+      triggerToiletSceneAnimations("kelp-scene");
     }
 
     document.addEventListener("keydown", function (event) {
@@ -117,10 +118,10 @@ AFRAME.registerComponent("one-min", {
       setTimeout(function () {
         textbox.object3D.visible = true; //code to be executed after 60 seconds
         //fog.setAttribute("far", "90"); //fog enters
-        green.setAttribute('fog', {
+        green.setAttribute("fog", {
           color: "#55AA22",
           near: "0",
-          far: "90"
+          far: "90",
         });
         count++;
       }, delayInMilliseconds);
@@ -150,9 +151,9 @@ AFRAME.registerComponent("two-min", {
       setTimeout(function () {
         textbox.object3D.visible = true; //code to be executed after 120 seconds
         //fog.setAttribute("far", "30"); //fog enters
-        green2.setAttribute('fog', {
+        green2.setAttribute("fog", {
           color: "#55AA22",
-          far: "30"
+          far: "30",
         });
       }, delayInMilliseconds);
 
@@ -170,7 +171,7 @@ AFRAME.registerComponent("three-min", {
     // Wait for model to load.
     this.el.addEventListener("model-loaded", () => {
       var delayInMilliseconds = 180000; //180 seconds
-      // var delayInMilliseconds = 10000; //180 seconds TESTING
+      var delayInMilliseconds = 10000; //180 seconds TESTING
 
       setTimeout(function () {
         //algae death transition goes here  - KEVIN
@@ -178,8 +179,8 @@ AFRAME.registerComponent("three-min", {
         var bgm = document.getElementById("fish-tank");
         bgm.pause();
         document.getElementById("main-scene").style.display = "none";
-        document.getElementById;
-        document.getElementById("algae-scene").style.display = "block";
+        document.getElementById("toilet-scene").style.display = "block";
+        triggerToiletSceneAnimations("algae-scene");
       }, delayInMilliseconds);
     });
   },

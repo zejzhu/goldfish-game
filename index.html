@@ -322,7 +322,7 @@
       <h1 id="general-timer"></h1>
       <script>
         var start = new Date().getTime();
-        var countDownDuration = 1 * 10 * 1000;
+        var countDownDuration = 18 * 10 * 1000;
         var end = start + countDownDuration;
 
         var x = setInterval(function () {
@@ -339,7 +339,7 @@
 
           if (timeRemaining < 0) {
             clearInterval(x);
-            switchScenes();
+            // switchScenes();
           }
         }, 1000);
 
@@ -463,7 +463,7 @@
           >
             <!--change src to #death-algae, #death-kelp as needed-->
             <a-image
-              src="#escaped"
+              src="#death-algae"
               height="32"
               width="45"
               position="0 0 0.2"
@@ -507,7 +507,7 @@
           >
             <!--change src to #death-algae, #death-kelp as needed-->
             <a-image
-              src="#escaped"
+              src="#death-kelp"
               height="32"
               width="45"
               position="0 0 0.2"

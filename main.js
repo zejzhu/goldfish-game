@@ -151,6 +151,7 @@ AFRAME.registerComponent("three-min", {
     // Wait for model to load.
     this.el.addEventListener("model-loaded", () => {
       var delayInMilliseconds = 180000; //180 seconds
+      // var delayInMilliseconds = 10000; //180 seconds TESTING
 
       setTimeout(function () {
         //algae death transition goes here  - KEVIN
@@ -158,6 +159,7 @@ AFRAME.registerComponent("three-min", {
         var bgm = document.getElementById("fish-tank");
         bgm.pause();
         document.getElementById("main-scene").style.display = "none";
+        document.getElementById;
         document.getElementById("algae-scene").style.display = "block";
       }, delayInMilliseconds);
     });

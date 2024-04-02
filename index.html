@@ -54,6 +54,8 @@
         <img id="sky-lake-ending" src="sky-lake-ending.png" />
         <img id="sky-bedroom" src="walltest1.png" />
         <img id="dialogue-narrator" src="dialogue-narrator.png" />
+        <!-- Fish Tank Sound -->
+        <audio id="fish-tank" src="Kevin/sound_track/fish_tank.flac"></audio>
       </a-assets>
 
       <!-- Models -->
@@ -141,10 +143,63 @@
       </a-entity>
 
       <!-- Camera -->
-      <a-entity camera look-controls position="0 1.6 0" rotation-reader
+      <a-entity
+        id="main-camera"
+        camera
+        look-controls
+        position="0 1.6 0"
+        rotation-reader
         >\
         <a-cursor color="white" position="0 0 -1"></a-cursor>
       </a-entity>
+
+      <!-- Fish Tank Sound Effect -->
+      <div id="start">
+        <a href="#" style="text-decoration: none">
+          <h1 id="start-button">Click to Start!</h1>
+        </a>
+      </div>
+
+      <style>
+        #start {
+          position: fixed;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+          height: 100%;
+          opacity: 1;
+          z-index: 1000;
+        }
+
+        #start-button {
+          font-size: 24px;
+          padding: 15px 30px;
+          color: #fff;
+          background-color: #007bff;
+          border-radius: 10px;
+          text-align: center;
+          cursor: pointer;
+          transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        #start-button:hover {
+          background-color: #0056b3;
+          color: #fff;
+        }
+      </style>
+
+      <script>
+        window.onload = function () {
+          var startButton = document.getElementById("start");
+          startButton.addEventListener("click", function () {
+            var bgm = document.getElementById("fish-tank");
+            bgm.play();
+            startButton.style.display = "none";
+            event.preventDefault();
+          });
+        };
+      </script>
 
       <!-- Timer -->
       <h1 id="general-timer"></h1>
@@ -167,7 +222,7 @@
 
           if (timeRemaining < 0) {
             clearInterval(x);
-            switchScenes();
+            // switchScenes();
           }
         }, 1000);
 

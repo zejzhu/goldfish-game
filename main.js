@@ -41,7 +41,7 @@ AFRAME.registerComponent("click-kelp", {
     console.log("clicked kelp");
     kelpCount++;
     holder = kelpCount;
-    console.log(holder);
+    console.log("after increment :" + holder);
 
     var fog = document.getElementById("purp-fog");
     if (holder == 1) {
@@ -50,7 +50,7 @@ AFRAME.registerComponent("click-kelp", {
       fog.setAttribute("far", "90"); //fog enters
     }
     if (holder == 2) {
-      var textbox = document.getElementById("kelp-1");
+      var textbox = document.getElementById("kelp-2");
       textbox.object3D.visible = true;
       fog.setAttribute("far", "30"); //fog strong
     }

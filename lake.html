@@ -8,7 +8,8 @@
   <script>
      document.addEventListener("keydown", function (event) { //if click h and textbox has not gone away yet, close & trigger end
         if (event.key === "h") {
-            console.log("end"); //KEVIN put the transition to the escaped end screen here
+          document.getElementById("lake-scene").style.display = "none";
+          document.getElementById("escaped-scene").style.display = "block";
         }
     });
     AFRAME.registerComponent('rotation-reader', {
@@ -51,6 +52,7 @@
       <img id="sky-lake-ending" src="sky-lake-ending.png">
       <img id="sky-bedroom" src="walltest1.png">
       <img id="dialogue-narrator" src="Assets/dialogues/narrator03.png">
+      <img id="escaped" src="Assets/escaped.png" />
     </a-assets>
 
     <!-- Camera -->

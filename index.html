@@ -30,7 +30,10 @@
     </style>
   </head>
   <body>
-    <a-scene id="main-scene">
+    <a-scene 
+      id="main-scene"
+      fog="type:linear; color:#55AA22; near:125; far:125;"
+    >
       <a-assets>
         <!-- Fish bowl with pebbles -->
         <a-asset-item id="bowl-obj" src="BowlWPebbles.obj"></a-asset-item>
@@ -70,17 +73,7 @@
         <img id="kelp01" src="Assets/dialogues/youkelp01.png" />
         <img id="kelp02" src="Assets/dialogues/youkelp02.png" />
       </a-assets>
-
-      <a-entity
-        id="green-fog"
-        fog="type:linear; color:#55AA22; near:0; far:125;"
-      ></a-entity>
-
-      <a-entity
-        id="purp-fog"
-        fog="type:linear; color:#6622AA; near:0; far:125;"
-      ></a-entity>
-
+      
       <!-- TEXTBOXES -->
       <!-- On click note -->
       <a-entity id="note-1" visible="false"

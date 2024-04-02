@@ -43,16 +43,25 @@ AFRAME.registerComponent("click-kelp", {
     holder = kelpCount;
     console.log("after increment :" + holder);
 
-    var fog = document.getElementById("purp-fog");
+    var scene1 = document.getElementById("main-scene");
     if (holder == 1) {
       var textbox = document.getElementById("kelp-1");
       textbox.object3D.visible = true;
-      fog.setAttribute("far", "90"); //fog enters
+      //scene.setAttribute("far", "90"); //fog enters
+      scene1.setAttribute('fog', {
+        color: "#6622AA",
+        far: "90",
+        near: "0"
+      });
     }
     if (holder == 2) {
       var textbox = document.getElementById("kelp-2");
       textbox.object3D.visible = true;
-      fog.setAttribute("far", "30"); //fog strong
+      //fog.setAttribute("far", "30"); //fog stron
+      scene1.setAttribute('fog', {
+        color: "#6622AA",
+        far: "30"
+      });
     }
     if (holder == 3) {
       //transition to kelp death scene - KEVIN
@@ -98,7 +107,7 @@ AFRAME.registerComponent("click-note", {
 AFRAME.registerComponent("one-min", {
   init: function () {
     // Wait for model to load.
-    var fog = document.getElementById("green-fog");
+    var green = document.getElementById("main-scene");
     this.el.addEventListener("model-loaded", () => {
       var textbox = document.getElementById("you-1");
       var next = document.getElementById("nar-2");
@@ -107,7 +116,12 @@ AFRAME.registerComponent("one-min", {
 
       setTimeout(function () {
         textbox.object3D.visible = true; //code to be executed after 60 seconds
-        fog.setAttribute("far", "90"); //fog enters
+        //fog.setAttribute("far", "90"); //fog enters
+        green.setAttribute('fog', {
+          color: "#55AA22",
+          near: "0",
+          far: "90"
+        });
         count++;
       }, delayInMilliseconds);
 
@@ -128,14 +142,18 @@ AFRAME.registerComponent("one-min", {
 AFRAME.registerComponent("two-min", {
   init: function () {
     // Wait for model to load.
-    var fog = document.getElementById("green-fog");
+    var green2 = document.getElementById("main-scene");
     this.el.addEventListener("model-loaded", () => {
       var textbox = document.getElementById("you-3");
       var delayInMilliseconds = 120000; //120 seconds
 
       setTimeout(function () {
         textbox.object3D.visible = true; //code to be executed after 120 seconds
-        fog.setAttribute("far", "30"); //fog enters
+        //fog.setAttribute("far", "30"); //fog enters
+        green2.setAttribute('fog', {
+          color: "#55AA22",
+          far: "30"
+        });
       }, delayInMilliseconds);
 
       document.addEventListener("keydown", function (event) {

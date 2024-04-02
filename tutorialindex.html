@@ -29,18 +29,20 @@
     });
   </script>
 
-
-  <a-scene>
+  <!-- change near to 125 for day 1 (no algae)
+    change near to 0 and far to 125 for day 2, far 90 for day three, and if you want the whole screen to be green, make far 30-->
+  <!--this is day 2 algae-->
+  <a-scene fog="type:linear; color:#55AA22; near:0; far:125;">
 
     <!--MYSTERIOUS NARRATOR FISH-->
     <a-entity>
 
-      <a-plane position="0 0 -8" width="10" height="3" opacity="1">
+      <!-- <a-plane position="0 0 -8" width="10" height="3" opacity="1">
         <a-image class="tile" width="10" height="3" src="#dialogue-narrator"></a-image>
         <a-text baseline="top" position="-1.5 1.1 0.2" opacity="1"
           value="I'm the previous fish. I used to live\nin this bowl too! There's so many\nthings to do here!"
           width="9"></a-text>
-      </a-plane>
+      </a-plane> -->
 
       <a-sky>
         <a-sphere radius="70" position="0 25 0" rotation="0 90 0" src="#sky-bedroom"

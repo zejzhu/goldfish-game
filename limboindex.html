@@ -1,0 +1,54 @@
+<html>
+
+<head>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+</head>
+
+<body>
+    <script>
+
+        AFRAME.registerComponent('rotation-reader', {
+
+            tick: (function () {
+                var position = new THREE.Vector3();
+                var quaternion = new THREE.Quaternion();
+
+                return function () {
+                    this.el.object3D.getWorldPosition(position);
+                    this.el.object3D.getWorldQuaternion(quaternion);
+                    // position and rotation now contain vector and quaternion in world space.
+                };
+            })()
+        });
+    </script>
+
+    <!--important stuff starts here-->
+    <a-scene>
+        <a-entity>
+            <a-sky>
+                <a-sphere radius="70" position="0 25 0" rotation="0 90 0" src="#sky-limbo"
+                    material="side: double; shader:flat;">
+                </a-sphere>
+
+
+                <a-plane position="0 5 -30" rotation="0 180 0" height="32" width="45" opacity="1">
+                    <!--change src to #death-algae, #death-kelp as needed-->
+                    <a-image src="#escaped" height="32" width="45" position="0 0 0.2"></a-image>
+                </a-plane>
+            </a-sky>
+        </a-entity>
+
+        <a-assets>
+            <img id="sky-limbo" src="sky-limbo.png">
+            <img id="death-algae" src="Assets/deathalgae.png">
+            <img id="death-kelp" src="Assets/deathkelp.png">
+            <img id="escaped" src="Assets/escaped.png">
+        </a-assets>
+
+        <a-entity camera look-controls position="0 1.6 0">\
+            <a-cursor color="white"></a-cursor>
+        </a-entity>
+    </a-scene>
+</body>
+
+</html>

@@ -222,11 +222,13 @@
 
           if (timeRemaining < 0) {
             clearInterval(x);
-            // switchScenes();
+            switchScenes();
           }
         }, 1000);
 
         function switchScenes() {
+          var bgm = document.getElementById("fish-tank");
+          bgm.pause();
           document.getElementById("main-scene").style.display = "none";
           document.getElementById("toilet-scene").style.display = "block";
           triggerToiletSceneAnimations();
@@ -253,15 +255,15 @@
         gltf-model="#toiletModel"
         position="0 0 -2"
         rotation="0 0 0"
-        scale="6 6 6"
+        scale="4 4 4"
       ></a-entity>
 
       <a-plane
         id="toilet-water"
-        position="-0.001 1.647 0.555"
+        position="0.008 1.108 -0.288"
         rotation="-90 0 0"
-        geometry="primitive: circle; radius: 0.8;"
-        material="src: url(Kevin/toilet/water_texture.jpg); repeat: 2 2; opacity: 0.1;"
+        geometry="primitive: circle; radius: 0.4;"
+        material="src: url(toilet/water_texture.jpg); repeat: 2 2; opacity: 0.1;"
       ></a-plane>
 
       <a-plane

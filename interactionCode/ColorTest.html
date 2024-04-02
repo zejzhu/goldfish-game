@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Color Change</title>
+  <meta name="description" content="A-Frame VR Color Change">
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+</head>
+<body>
+  <a-scene>
+    <!-- Camera and Cursor -->
+    <a-entity camera look-controls position="0 1.6 0" color="black"></a-entity>
+    <a-entity cursor="rayOrigin: mouse"></a-entity>
+
+    <!-- Clickable Box -->
+    <a-box id="clickableObject" position="0 1.5 -5" color="purple" clickable></a-box>
+  </a-scene>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var clickableObject = document.getElementById('clickableObject');
+
+      clickableObject.addEventListener('click', function(){
+        // Change the color of the clicked object
+        var colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00']; // List of colors
+        var randomColor = colors[Math.floor(Math.random() * colors.length)]; // Pick a random color
+        clickableObject.setAttribute('color', randomColor); // Change the color
+      });
+    });
+  </script>
+</body>
+</html>

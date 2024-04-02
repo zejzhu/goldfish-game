@@ -483,9 +483,15 @@
         <img id="escaped" src="Assets/escaped.png" />
       </a-assets>
 
-      <a-entity camera look-controls position="0 1.6 0"
+      <!-- Camera -->
+      <a-entity
+        id="main-camera"
+        camera
+        look-controls
+        position="0 1.6 0"
+        rotation-reader
         >\
-        <a-cursor color="white"></a-cursor>
+        <a-cursor color="white" position="0 0 -1"></a-cursor>
       </a-entity>
     </a-scene>
 
@@ -527,9 +533,15 @@
         <img id="escaped" src="Assets/escaped.png" />
       </a-assets>
 
-      <a-entity camera look-controls position="0 1.6 0"
+      <!-- Camera -->
+      <a-entity
+        id="main-camera"
+        camera
+        look-controls
+        position="0 1.6 0"
+        rotation-reader
         >\
-        <a-cursor color="white"></a-cursor>
+        <a-cursor color="white" position="0 0 -1"></a-cursor>
       </a-entity>
     </a-scene>
     <script src="main.js"></script>

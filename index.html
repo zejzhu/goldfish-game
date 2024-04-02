@@ -57,17 +57,18 @@
         <!-- Fish Tank Sound -->
         <audio id="fish-tank" src="Kevin/sound_track/fish_tank.flac"></audio>
         <!-- Textbox images -->
-        <img id="child01" src="Assets/dialogues/child01.png"/>
-        <img id="child02" src="Assets/dialogues/child02.png"/>
-        <img id="nar01" src="Assets/dialogues/narrator01.png"/>
-        <img id="nar02" src="Assets/dialogues/narrator02.png"/>
-        <img id="nar03" src="Assets/dialogues/narrator03.png"/> <!-- MOVE TO lake ending scene later -->
-        <img id="note01" src="Assets/dialogues/note01.png"/>
-        <img id="you01" src="Assets/dialogues/you01.png"/>
-        <img id="you02" src="Assets/dialogues/you02.png"/>
-        <img id="you03" src="Assets/dialogues/you03.png"/>
-        <img id="kelp01" src="Assets/dialogues/youkelp01.png"/>
-        <img id="kelp02" src="Assets/dialogues/youkelp02.png"/>
+        <img id="child01" src="Assets/dialogues/child01.png" />
+        <img id="child02" src="Assets/dialogues/child02.png" />
+        <img id="nar01" src="Assets/dialogues/narrator01.png" />
+        <img id="nar02" src="Assets/dialogues/narrator02.png" />
+        <img id="nar03" src="Assets/dialogues/narrator03.png" />
+        <!-- MOVE TO lake ending scene later -->
+        <img id="note01" src="Assets/dialogues/note01.png" />
+        <img id="you01" src="Assets/dialogues/you01.png" />
+        <img id="you02" src="Assets/dialogues/you02.png" />
+        <img id="you03" src="Assets/dialogues/you03.png" />
+        <img id="kelp01" src="Assets/dialogues/youkelp01.png" />
+        <img id="kelp02" src="Assets/dialogues/youkelp02.png" />
       </a-assets>
 
       <a-entity
@@ -82,162 +83,71 @@
 
       <!-- TEXTBOXES -->
       <!-- On click note -->
-      <a-entity
-        id="note-1"
-        visible="false"
-        ><a-plane
-          position="0 0.5 -6"
-          width="10"
-          height="3"
-          opacity="1"
-          ><a-image
-            class="tile"
-            width="10"
-            height="3"
-            src="#note01"
-          ></a-image>
+      <a-entity id="note-1" visible="false"
+        ><a-plane position="0 0.5 -6" width="10" height="3" opacity="1"
+          ><a-image class="tile" width="10" height="3" src="#note01"></a-image>
         </a-plane>
       </a-entity>
 
       <!-- On load -->
-      <a-entity
-        id="child-1"
-        visible="false"
-        ><a-plane
-          position="0 0.5 -6"
-          width="10"
-          height="3"
-          opacity="1"
-          ><a-image
-            class="tile"
-            width="10"
-            height="3"
-            src="#child01"
-          ></a-image>
+      <a-entity id="child-1" visible="false"
+        ><a-plane position="0 0.5 -6" width="10" height="3" opacity="1"
+          ><a-image class="tile" width="10" height="3" src="#child01"></a-image>
         </a-plane>
       </a-entity>
 
-      <a-entity
-        id="nar-1"
-        visible="false"
-        ><a-plane
-          position="0 0.5 -6"
-          width="10"
-          height="3"
-          opacity="1"
-          ><a-image
-            class="tile"
-            width="10"
-            height="3"
-            src="#nar01"
-          ></a-image>
+      <a-entity id="nar-1" visible="false"
+        ><a-plane position="0 0.5 -6" width="10" height="3" opacity="1"
+          ><a-image class="tile" width="10" height="3" src="#nar01"></a-image>
         </a-plane>
       </a-entity>
 
-      <a-entity
-        id="you-1"
-        visible="false"
-        ><a-plane
-          position="0 0.5 -6"
-          width="10"
-          height="3"
-          opacity="1"
-          ><a-image
-            class="tile"
-            width="10"
-            height="3"
-            src="#you01"
-          ></a-image>
+      <a-entity id="you-1" visible="false"
+        ><a-plane position="0 0.5 -6" width="10" height="3" opacity="1"
+          ><a-image class="tile" width="10" height="3" src="#you01"></a-image>
         </a-plane>
       </a-entity>
 
       <!-- On eat kelp (counter) -->
-      <a-entity
-        id="kelp-1"
-        visible="false"
+      <a-entity id="kelp-1" visible="false"
         ><a-plane
           position="-1.171 0.5 6.4"
           rotation="0 -180 0"
           width="10"
           height="3"
           opacity="1"
-          ><a-image
-            class="tile"
-            width="10"
-            height="3"
-            src="#kelp01"
-          ></a-image>
+          ><a-image class="tile" width="10" height="3" src="#kelp01"></a-image>
         </a-plane>
       </a-entity>
 
-      <a-entity
-        id="kelp-2"
-        visible="false"
+      <a-entity id="kelp-2" visible="false"
         ><a-plane
           position="-1.171 0.5 6.4"
           rotation="0 -180 0"
           width="10"
           height="3"
           opacity="1"
-          ><a-image
-            class="tile"
-            width="10"
-            height="3"
-            src="#kelp01"
-          ></a-image>
+          ><a-image class="tile" width="10" height="3" src="#kelp01"></a-image>
         </a-plane>
       </a-entity>
 
       <!-- After 1 min -->
-      <a-entity
-        id="you-2"
-        visible="false"
-        ><a-plane
-          position="0 0.5 -6"
-          width="10"
-          height="3"
-          opacity="1"
-          ><a-image
-            class="tile"
-            width="10"
-            height="3"
-            src="#you02"
-          ></a-image>
+      <a-entity id="you-2" visible="false"
+        ><a-plane position="0 0.5 -6" width="10" height="3" opacity="1"
+          ><a-image class="tile" width="10" height="3" src="#you02"></a-image>
         </a-plane>
       </a-entity>
 
-      <a-entity
-        id="nar-2"
-        visible="false"
-        ><a-plane
-          position="0 0.5 -6"
-          width="10"
-          height="3"
-          opacity="1"
-          ><a-image
-            class="tile"
-            width="10"
-            height="3"
-            src="#nar02"
-          ></a-image>
+      <a-entity id="nar-2" visible="false"
+        ><a-plane position="0 0.5 -6" width="10" height="3" opacity="1"
+          ><a-image class="tile" width="10" height="3" src="#nar02"></a-image>
         </a-plane>
       </a-entity>
 
       <!-- After 2 min -->
-      <a-entity
-        id="you-3"
-        visible="false"
-        ><a-plane
-          position="0 0.5 -6"
-          width="10"
-          height="3"
-          opacity="1"
-          ><a-image
-            class="tile"
-            width="10"
-            height="3"
-            src="#you03"
-          ></a-image>
+      <a-entity id="you-3" visible="false"
+        ><a-plane position="0 0.5 -6" width="10" height="3" opacity="1"
+          ><a-image class="tile" width="10" height="3" src="#you03"></a-image>
         </a-plane>
       </a-entity>
 
@@ -246,7 +156,7 @@
         class="collidable"
         obj-model="obj: #bowl-obj; mtl: #bowl-mtl"
         position="0 0 -14"
-        one-min 
+        one-min
         two-min
         three-min
       >
@@ -384,24 +294,26 @@
             startButton.style.display = "none";
             event.preventDefault();
             //loading first textboxes
-            var textbox = document.getElementById('child-1');
+            var textbox = document.getElementById("child-1");
             textbox.object3D.visible = true;
-            var count = 1
+            var count = 1;
 
-            document.addEventListener('keydown', function(event){ 
-              if (event.key === 'h'){
+            document.addEventListener("keydown", function (event) {
+              if (event.key === "h") {
                 console.log(count);
                 textbox.object3D.visible = false;
-                if(count == 1){ //show narrator01
-                  textbox = document.getElementById('nar-1');
+                if (count == 1) {
+                  //show narrator01
+                  textbox = document.getElementById("nar-1");
                   count++;
                 }
-                if(count == 2){ //show you01
-                  textbox = document.getElementById('you-1');
+                if (count == 2) {
+                  //show you01
+                  textbox = document.getElementById("you-1");
                   count++;
                 }
               }
-            }) 
+            });
           });
         };
       </script>
@@ -529,6 +441,93 @@
       </script>
     </a-scene>
 
+    <!-- Algae Death Scene -->
+    <a-scene id="algae-scene" style="display: none">
+      <a-entity>
+        <a-sky>
+          <a-sphere
+            radius="70"
+            position="0 25 0"
+            rotation="0 90 0"
+            src="#sky-limbo"
+            material="side: double; shader:flat;"
+          >
+          </a-sphere>
+
+          <a-plane
+            position="0 5 -30"
+            rotation="0 180 0"
+            height="32"
+            width="45"
+            opacity="1"
+          >
+            <!--change src to #death-algae, #death-kelp as needed-->
+            <a-image
+              src="#escaped"
+              height="32"
+              width="45"
+              position="0 0 0.2"
+            ></a-image>
+          </a-plane>
+        </a-sky>
+      </a-entity>
+
+      <a-assets>
+        <img id="sky-limbo" src="sky-limbo.png" />
+        <img id="death-algae" src="Assets/deathalgae.png" />
+        <img id="death-kelp" src="Assets/deathkelp.png" />
+        <img id="escaped" src="Assets/escaped.png" />
+      </a-assets>
+
+      <a-entity camera look-controls position="0 1.6 0"
+        >\
+        <a-cursor color="white"></a-cursor>
+      </a-entity>
+    </a-scene>
+
+    <!-- Kelp Death Scene -->
+    <a-scene id="kelp-scene" style="display: none">
+      <a-entity>
+        <a-sky>
+          <a-sphere
+            radius="70"
+            position="0 25 0"
+            rotation="0 90 0"
+            src="#sky-limbo"
+            material="side: double; shader:flat;"
+          >
+          </a-sphere>
+
+          <a-plane
+            position="0 5 -30"
+            rotation="0 180 0"
+            height="32"
+            width="45"
+            opacity="1"
+          >
+            <!--change src to #death-algae, #death-kelp as needed-->
+            <a-image
+              src="#escaped"
+              height="32"
+              width="45"
+              position="0 0 0.2"
+            ></a-image>
+          </a-plane>
+        </a-sky>
+      </a-entity>
+
+      <a-assets>
+        <img id="sky-limbo" src="sky-limbo.png" />
+        <img id="death-algae" src="Assets/deathalgae.png" />
+        <img id="death-kelp" src="Assets/deathkelp.png" />
+        <img id="escaped" src="Assets/escaped.png" />
+      </a-assets>
+
+      <a-entity camera look-controls position="0 1.6 0"
+        >\
+        <a-cursor color="white"></a-cursor>
+      </a-entity>
+    </a-scene>
     <script src="main.js"></script>
   </body>
 </html>

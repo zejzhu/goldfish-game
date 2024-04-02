@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>You died.</title>
+    <meta name="description" content="Hello, World! - A-Frame">
+
+    <script src = "https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src = "https://unpkg.com/super-hands@2.1.0/dist/super-hands.min.js"></script>
+    <script src = "https://unpkg.com/aframe-event-set-component@3.0.3/dist/a-frame-event-set-component/min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script>
+    
+  </head>
+  <body>
+    <a-scene>
+      <!-- Assets-->
+      <a-assets> <img id="died" src="./You Died Screens/You Died - Algae Overgrowth.jpg">
+        <img id="died2" src="./You Died - Exotic Plant.jpg"> </a-assets>
+
+      <!--Cam and Cursor-->
+     <!-- <a-entity cursor="rayOrigin: mouse" raycaster></a-entity>-->
+      
+<a-entity id = "cam" camera look-controls position = "0 1.6 0" rotation = "0 45 0 " rotation-reader> <a-cursor color="black" position = "0 0 -1"></a-cursor></a-entity>
+      
+      
+      <!--Objects-->
+      <a-sphere id = "pinkBox" position="-1 8 -3" rotation="0 45 0" color="yellow" ></a-sphere>
+      <!-- Image on a plane -->
+      <a-plane id = "plane" position="0 0 -3" rotation="-90 0 0" width="4" height="4" color="#7BC8B6"></a-plane>
+    </a-scene>
+
+     <script src = "rotateObject.js">  </script>
+    
+    
+  </body>
+</html>

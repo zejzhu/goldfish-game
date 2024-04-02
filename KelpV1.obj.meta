@@ -3,7 +3,17 @@ guid: 57f74c592abcd41f09eb42c98b6cc35d
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: kelp
+    second: {fileID: 2100000, guid: 96cd5ef7e476c4b7d9f55acf3251fafa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: rock
+    second: {fileID: 2100000, guid: 586634636e4af4b2ab95e9cf0e743a9d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

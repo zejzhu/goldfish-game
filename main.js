@@ -187,7 +187,7 @@ AFRAME.registerComponent("three-min", {
 });
 
 // CAMERA ROTATION
-AFRAME.registerComponent("rotation-reader", {
+AFRAME.registerComponent("rotation-readerS", { //Shaniah's version (main scene only)
   tick: function() {
     var rotation = this.el.getAttribute('rotation');
     var delayInMilliseconds = 5000; //5 seconds
@@ -197,4 +197,17 @@ AFRAME.registerComponent("rotation-reader", {
       setTimeout(function() {console.log("Triggered lake ending");}, delayInMilliseconds);
     } 
   }
+});
+
+AFRAME.registerComponent('rotation-reader', { //Zenaid's version (all scenes)
+  tick: (function () {
+    var position = new THREE.Vector3();
+    var quaternion = new THREE.Quaternion();
+
+    return function () {
+      this.el.object3D.getWorldPosition(position);
+      this.el.object3D.getWorldQuaternion(quaternion);
+      // position and rotation now contain vector and quaternion in world space.
+    };
+  })()
 });

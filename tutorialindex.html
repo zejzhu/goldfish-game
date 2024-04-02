@@ -40,8 +40,10 @@
       </a-plane>
 
       <a-sky>
-        <a-sphere radius="70" position="0 25 0" rotation="0 90 0" src="#sky-lake-ending"
-          animation="property:color; from: #444466; to:#FFFFFF; duration: 9000" material="side: double; shader:flat;">
+        <a-sphere radius="70" position="0 25 0" rotation="0 90 0" src="#sky-bedroom"
+          material="side: double; shader:flat;" color="#FFFFFF"
+          animation__first="property:color; to: #444466; delay:57000; dur: 1000; startEvents: loaded, animationcomplete__second"
+          animation__second="property:color; to: #FFFFFF; delay:1000; dur: 1000; startEvents: animationcomplete__first">
         </a-sphere>
       </a-sky>
     </a-entity>

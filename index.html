@@ -3,6 +3,9 @@
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
     <!-- Script for hovering events -->
     <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+    <!-- Scripts from rotateCam.html -->
+    <script src = "https://unpkg.com/super-hands@2.1.0/dist/super-hands.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script>
     <style>
       #overlay {
         top: 0;
@@ -14,6 +17,7 @@
         z-index: 0;
       }
     </style>
+    <!-- set opacity below to 0 to hide timer-->
     <style>
       #general-timer {
         position: fixed;
@@ -24,7 +28,7 @@
         align-items: center;
         width: 10%;
         height: 10%;
-        opacity: 1;
+        opacity: 0;
         z-index: 1000;
       }
     </style>
@@ -51,18 +55,16 @@
         <a-asset-item id="note-obj" src="Note.obj"></a-asset-item>
         <a-asset-item id="note-mtl" src="Note.mtl"></a-asset-item>
         <!-- Zenaid assets -->
-        <img id="sky-lake-ending" src="sky-lake-ending.png" />
+        <img id="sky-lake-ending" src="sky-lake-ending.png"/>
         <img id="sky-bedroom" src="walltest1.png" />
-        <img id="dialogue-narrator" src="dialogue-narrator.png" />
+        <img id="dialogue-narrator" src="dialogue-narrator.png"/>
         <!-- Fish Tank Sound -->
         <audio id="fish-tank" src="Kevin/sound_track/fish_tank.flac"></audio>
         <!-- Textbox images -->
-        <img id="child01" src="Assets/dialogues/child01.png" />
+        <img id="child01" src="Assets/dialogues/child01.png" /> <!-- These should be the only file paths that need to change-->
         <img id="child02" src="Assets/dialogues/child02.png" />
         <img id="nar01" src="Assets/dialogues/narrator01.png" />
         <img id="nar02" src="Assets/dialogues/narrator02.png" />
-        <img id="nar03" src="Assets/dialogues/narrator03.png" />
-        <!-- MOVE TO lake ending scene later -->
         <img id="note01" src="Assets/dialogues/note01.png" />
         <img id="you01" src="Assets/dialogues/you01.png" />
         <img id="you02" src="Assets/dialogues/you02.png" />
@@ -292,7 +294,10 @@
             var bgm = document.getElementById("fish-tank");
             bgm.play();
             startButton.style.display = "none";
-            event.preventDefault();
+            event.preventDefault(); //not sure what this line does
+
+            document.getElementById("main-scene").style.display = "block"; //added this to try and fix
+
             //loading first textboxes
             var textbox = document.getElementById("child-1");
             textbox.object3D.visible = true;
@@ -339,7 +344,7 @@
 
           if (timeRemaining < 0) {
             clearInterval(x);
-            switchScenes();
+            //switchScenes();
           }
         }, 1000);
 
@@ -461,9 +466,9 @@
             width="45"
             opacity="1"
           >
-            <!--change src to #death-algae, #death-kelp as needed-->
+            <!-- set to algae screen -->
             <a-image
-              src="#escaped"
+              src="#death-algae"
               height="32"
               width="45"
               position="0 0 0.2"
@@ -475,8 +480,6 @@
       <a-assets>
         <img id="sky-limbo" src="sky-limbo.png" />
         <img id="death-algae" src="Assets/deathalgae.png" />
-        <img id="death-kelp" src="Assets/deathkelp.png" />
-        <img id="escaped" src="Assets/escaped.png" />
       </a-assets>
 
       <a-entity camera look-controls position="0 1.6 0"
@@ -505,9 +508,9 @@
             width="45"
             opacity="1"
           >
-            <!--change src to #death-algae, #death-kelp as needed-->
+            <!-- set to kelp screen-->
             <a-image
-              src="#escaped"
+              src="#death-kelp"
               height="32"
               width="45"
               position="0 0 0.2"
@@ -528,6 +531,97 @@
         <a-cursor color="white"></a-cursor>
       </a-entity>
     </a-scene>
+
+    <!-- Lake Ending SCREEN -->
+    <a-scene id="lake-end" style="display: none">
+      <a-entity>
+        <a-sky>
+          <a-sphere
+            radius="70"
+            position="0 25 0"
+            rotation="0 90 0"
+            src="#sky-lake-ending"
+            material="side: double; shader:flat;"
+          >
+          </a-sphere>
+          <a-plane
+            position="0 5 -30"
+            rotation="0 180 0"
+            height="32"
+            width="45"
+            opacity="1"
+          >
+            <a-image
+              src="#escaped"
+              height="32"
+              width="45"
+              position="0 0 0.2"
+            ></a-image>
+          </a-plane>
+        </a-sky>
+      </a-entity>
+
+      <a-assets>
+        <img id="sky-limbo" src="sky-limbo.png" />
+        <img id="escaped" src="Assets/escaped.png" />
+      </a-assets>
+
+      <a-entity camera look-controls position="0 1.6 0"
+        >\
+        <a-cursor color="white"></a-cursor>
+      </a-entity>
+    </a-scene>
+  
+    <!-- Lake Ending SCENE -->
+    <a-scene id="lake-scene" style="display: none">
+      <a-entity>
+        <a-sky>
+          <!-- Check here! Sphere looks blank on my test scene -->
+          <a-sphere
+            radius="70"
+            position="0 25 0"
+            rotation="0 90 0"
+            src="#sky-lake-ending"
+            material="side: double; shader:flat;"
+          >
+          </a-sphere>
+          <!--
+          <a-plane
+            position="0 5 -30"
+            rotation="0 180 0"
+            height="32"
+            width="45"
+            opacity="1"
+          >
+            <a-image
+              src="#escaped"
+              height="32"
+              width="45"
+              position="0 0 0.2"
+            ></a-image>
+          </a-plane>
+          -->
+        </a-sky>
+      </a-entity>
+
+      <a-entity id="nar-3" visible="false"
+        ><a-plane position="0 0.5 -6" width="10" height="3" opacity="1"
+          ><a-image class="tile" width="10" height="3" src="#nar03"></a-image>
+        </a-plane>
+      </a-entity>
+      <a-assets>
+        <img id="sky-limbo" src="sky-limbo.png" />
+        <img id="escaped" src="Assets/escaped.png" />
+        <img id="nar03" src="Assets/dialogues/narrator03.png" /> <!-- textbox for this scene -->
+        <img id="sky-lake-ending" src="sky-lake-ending.png"/>
+      </a-assets>
+
+      <a-entity camera look-controls position="0 1.6 0"
+        >\
+        <a-cursor color="white"></a-cursor>
+      </a-entity>
+    </a-scene>
+
     <script src="main.js"></script>
   </body>
 </html>

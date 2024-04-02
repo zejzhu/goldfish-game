@@ -24,7 +24,7 @@ AFRAME.registerComponent("interact-highlight", {
       if (!obj.material) return;
       obj.material.color.setHex(0xffffff);
     });
-  },
+  }
 });
 
 // TRIGGER EVENTS WITH CLICKS
@@ -68,7 +68,7 @@ AFRAME.registerComponent("click-kelp", {
         textbox.object3D.visible = false;
       }
     });
-  },
+  }
 });
 
 AFRAME.registerComponent("click-note", {
@@ -91,7 +91,7 @@ AFRAME.registerComponent("click-note", {
         textbox.object3D.visible = false;
       }
     });
-  },
+  }
 });
 
 //one min
@@ -121,7 +121,7 @@ AFRAME.registerComponent("one-min", {
         }
       });
     });
-  },
+  }
 });
 //two min
 AFRAME.registerComponent("two-min", {
@@ -143,8 +143,9 @@ AFRAME.registerComponent("two-min", {
         }
       });
     });
-  },
+  }
 });
+
 //three min
 AFRAME.registerComponent("three-min", {
   init: function () {
@@ -161,19 +162,58 @@ AFRAME.registerComponent("three-min", {
         document.getElementById("algae-scene").style.display = "block";
       }, delayInMilliseconds);
     });
-  },
+  }
 });
 
 // CAMERA ROTATION
 AFRAME.registerComponent("rotation-reader", {
-  tick: (function () {
-    var position = new THREE.Vector3();
-    var quaternion = new THREE.Quaternion();
+    tick: function() {
+      var rotation = this.el.getAttribute('rotation');
+    var delayInMilliseconds = 10000; //10 seconds
+    
+      if (rotation.x > 45)  {
+          console.log('rotation: up')
+        setTimeout(function() {
+          //trigger good ending
+          var bgm = document.getElementById("fish-tank");
+          bgm.pause();
+          document.getElementById("main-scene").style.display = "none";
+          document.getElementById("lake-scene").style.display = "block";
+        }, delayInMilliseconds);
+      } 
+          
+    else {
+        console.log ('Oops try again')
+        pinkBox.setAttribute('color', '#FF00FF');
+        plane.setAttribute('color', '#4b5320');
+      }    
+  }
+});
 
-    return function () {
-      this.el.object3D.getWorldPosition(position);
-      this.el.object3D.getWorldQuaternion(quaternion);
-      // position and rotation now contain vector and quaternion in world space.
-    };
-  })(),
+//Ending scene textbox
+AFRAME.registerComponent("close-nar", {
+  init: function () {
+    // Wait for model to load.
+    this.el.addEventListener("model-loaded", () => {
+      var textbox = document.getElementById("nar-3");
+      var delayInMilliseconds = 3000; //3 seconds
+
+      setTimeout(function () { //textbox enters
+        textbox.object3D.visible = true; 
+      }, delayInMilliseconds);
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "h") {
+          textbox.object3D.visible = false;
+          //trigger switch to end screen
+          //wait another 3 seconds before switching
+          setTimeout(function () { //scene changes
+            document.getElementById("lake-scene").style.display = "none";
+            document.getElementById("lake-end").style.display = "block";
+          }, delayInMilliseconds);
+          
+        }
+      });
+    });
+  }
 });

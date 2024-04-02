@@ -1,0 +1,24 @@
+newmtl dustWall
+map_Kd purpDust.jpeg
+Kd 1 1 1
+d 1
+
+newmtl gradientWall
+map_Kd purp2.jpeg
+Kd 1 1 1
+d 1
+
+newmtl pebblePurp
+Kd 0.4688743 0.3039783 0.9339623
+d 0.8980392
+
+newmtl shinyPurple
+map_Kd shinyPurple.jpeg
+Kd 1 1 1
+d 1
+
+newmtl PurpleWall
+map_Kd purpWall.jpeg
+Kd 1 1 1
+d 1
+

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/aframe-effects"></script>
+    <style>
+      #overlay {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        opacity: 0;
+        z-index: 0;
+      }
+    </style>
+    <style>
+      #general-timer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 10%;
+        height: 10%;
+        opacity: 1;
+        z-index: 1000;
+      }
+    </style>
+  </head>
+  <body>
+    <a-scene id="toilet-scene" effects="postprocessing: true">
+      <a-assets>
+        <audio id="soundtrack" src="sound_track/plunge.wav"></audio>
+        <a-asset-item id="toiletModel" src="toilet/scene.gltf"></a-asset-item>
+      </a-assets>
+
+      <a-entity camera look-controls>
+        <a-camera id="cameraRig" position="0 3 0"></a-camera>
+      </a-entity>
+
+      <a-entity
+        gltf-model="#toiletModel"
+        position="0 0 -2"
+        rotation="0 0 0"
+        scale="6 6 6"
+      ></a-entity>
+
+      <a-plane
+        id="toilet-water"
+        position="-0.001 1.647 0.555"
+        rotation="-90 0 0"
+        geometry="primitive: circle; radius: 0.8;"
+        material="src: url(toilet/water_texture.jpg); repeat: 2 2; opacity: 0.1;"
+      ></a-plane>
+
+      <a-plane
+        id="floor"
+        position="0 0 0"
+        rotation="-90 0 0"
+        width="12"
+        height="12"
+        material="src: url(floor_tile/tile.jpg); repeat: 2 2;"
+      ></a-plane>
+
+      <a-sky color="#ECECEC"></a-sky>
+
+      <div id="overlay"></div>
+      <h1 id="general-timer"></h1>
+
+      <script>
+        document
+          .querySelector("a-scene")
+          .addEventListener("loaded", function () {
+            var cameraRig = document.getElementById("cameraRig");
+            cameraRig.setAttribute(
+              "animation",
+              "property: position; to: 0 1.25 0; dur: 3000;"
+            );
+
+            function onAnimationComplete() {
+              var soundtrack = document.getElementById("soundtrack");
+              soundtrack.play();
+              console.log("sound played 1");
+
+              setTimeout(function () {
+                soundtrack.play();
+                console.log("sound played 2");
+
+                setTimeout(function () {
+                  cameraRig.setAttribute(
+                    "animation",
+                    "property: rotation; to: 0 1800 0; dur: 5000; easing: linear; loop: false;"
+                  );
+
+                  var overlay = document.getElementById("overlay");
+                  overlay.style.position = "fixed";
+                  overlay.style.zIndex = "1000";
+                  overlay.style.transition = "opacity 5.5s ease";
+                  overlay.style.opacity = "1";
+
+                  setTimeout(function () {
+                    // window.location.href = "https://google.com";
+                  }, 5000);
+                }, 500);
+              }, 4000);
+
+              cameraRig.removeEventListener(
+                "animationcomplete",
+                onAnimationComplete
+              );
+            }
+
+            cameraRig.addEventListener(
+              "animationcomplete",
+              onAnimationComplete
+            );
+          });
+      </script>
+
+      <script>
+        var start = new Date().getTime();
+        var countDownDuration = 5 * 60 * 1000;
+        var end = start + countDownDuration;
+
+        var x = setInterval(function () {
+          var now = new Date().getTime();
+          var timeRemaining = end - now;
+
+          var minutes = Math.floor(
+            (timeRemaining % (1000 * 60 * 60)) / (1000 * 60)
+          );
+          var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+          document.getElementById("general-timer").innerHTML =
+            minutes + "m " + seconds + "s ";
+
+          if (timeRemaining < 0) {
+            clearInterval(x);
+          }
+        }, 1000);
+      </script>
+    </a-scene>
+  </body>
+</html>

@@ -188,14 +188,13 @@ AFRAME.registerComponent("three-min", {
 
 // CAMERA ROTATION
 AFRAME.registerComponent("rotation-reader", {
-  tick: (function () {
-    var position = new THREE.Vector3();
-    var quaternion = new THREE.Quaternion();
-
-    return function () {
-      this.el.object3D.getWorldPosition(position);
-      this.el.object3D.getWorldQuaternion(quaternion);
-      // position and rotation now contain vector and quaternion in world space.
-    };
-  })(),
+  tick: function() {
+    var rotation = this.el.getAttribute('rotation');
+    var delayInMilliseconds = 5000; //5 seconds
+  
+    if (rotation.z > 45)  {
+        console.log("Hit threshold");
+      setTimeout(function() {console.log("Triggered lake ending");}, delayInMilliseconds);
+    } 
+  }
 });

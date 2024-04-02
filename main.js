@@ -108,12 +108,13 @@ AFRAME.registerComponent("one-min", {
       setTimeout(function () {
         textbox.object3D.visible = true; //code to be executed after 60 seconds
         fog.setAttribute("far", "90"); //fog enters
+        count++;
       }, delayInMilliseconds);
 
       document.addEventListener("keydown", function (event) {
         if (event.key === "h") {
           textbox.object3D.visible = false;
-          if (count == 0) {
+          if (count == 1) {
             next.object3D.visible = true;
             count++;
           }

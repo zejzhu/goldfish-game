@@ -294,23 +294,32 @@
             startButton.style.display = "none";
             event.preventDefault();
             //loading first textboxes
-            var textbox = document.getElementById("child-1");
-            textbox.object3D.visible = true;
-            var count = 1;
+            var box1 = document.getElementById("child-1");
+            var box2 = document.getElementById("nar-1");
+            var box3 = document.getElementById("you-1");
+            box1.object3D.visible = true;
+            var first = true;
+            var second = false;
+            var third = false;
 
             document.addEventListener("keydown", function (event) {
               if (event.key === "h") {
-                console.log(count);
-                textbox.object3D.visible = false;
-                if (count == 1) {
-                  //show narrator01
-                  textbox = document.getElementById("nar-1");
-                  count++;
-                }
-                if (count == 2) {
-                  //show you01
-                  textbox = document.getElementById("you-1");
-                  count++;
+                if(first == true){
+                  console.log(first);
+                  box1.object3D.visible = false;
+                  box2.object3D.visible = true;
+                  second = true;
+                  first = false;
+                } else if(second == true){
+                  console.log(second);
+                  box2.object3D.visible = false;
+                  box3.object3D.visible = true;
+                  third = true;
+                  second = false;
+                } else if(third == true){
+                  console.log(third);
+                  box3.object3D.visible = false;
+                  third = false;
                 }
               }
             });

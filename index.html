@@ -16,11 +16,15 @@
         <!-- Sign without note -->
         <a-asset-item id="sign-obj" src="SignNONote.obj"></a-asset-item>
         <a-asset-item id="sign-mtl" src="SignNONote.mtl"></a-asset-item>
+        <img id="sign-text" src="Gone.png">
         <!-- Both kelp versions -->
         <a-asset-item id="kelp1-obj" src="KelpV1.obj"></a-asset-item>
         <a-asset-item id="kelp1-mtl" src="KelpV1.mtl"></a-asset-item>
         <a-asset-item id="kelp2-obj" src="KelpV2.obj"></a-asset-item>
         <a-asset-item id="kelp2-mtl" src="KelpV2.mtl"></a-asset-item>
+        <!-- Note -->
+        <a-asset-item id="note-obj" src="Note.obj"></a-asset-item>
+        <a-asset-item id="note-mtl" src="Note.mtl"></a-asset-item>
         <!-- Zenaid assets -->
         <img id="sky-lake-ending" src="sky-lake-ending.png">
         <img id="sky-bedroom" src="walltest1.png">
@@ -59,7 +63,21 @@
         class="collidable"
         obj-model="obj: #sign-obj; mtl: #sign-mtl"
         position="0.287 0 -14.074"
-        rotation="0 0 0"
+        rotation="0 0 0">
+      </a-entity>
+      <a-entity>
+        <a-image 
+          src="#sign-text"
+          position="6.567 0.593 -3.838"
+          rotation="0 -65 -90"
+          scale="2.5 4.5 1">
+          </a-image>
+      </a-entity>
+      <a-entity
+        obj-model="obj: #note-obj; mtl: #note-mtl"
+        position="13.968 -0.059 8.743"
+        rotation="0 179.990 0"
+        interact-highlight
         click-note>
       </a-entity>
 

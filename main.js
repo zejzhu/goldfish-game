@@ -11,7 +11,7 @@ AFRAME.registerComponent('interact-highlight', {
         const model = evt.target.getObject3D('mesh');
         model.traverse((obj) => {
             if (!obj.material) return
-            obj.material.color.setHex(0xFCFF00)
+            obj.material.color.setHex(0xFF9968)
         })
     },
     mouseleave(evt) { //on exit hover, do this

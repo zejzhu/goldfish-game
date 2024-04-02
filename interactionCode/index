@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>You died.</title>
+    <meta name="description" content="Hello, World! - A-Frame">
+
+    <script src = "https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src = "https://unpkg.com/super-hands@2.1.0/dist/super-hands.min.js"></script>
+    <script src = "https://unpkg.com/aframe-event-set-component@3.0.3/dist/a-frame-event-set-component/min.js"></script>
+    
+  </head>
+  <body>
+    <a-scene>
+      <!-- Assets-->
+      <a-assets> 
+        <img id="died" src="./You Died Screens/You Died - Algae Overgrowth.jpg">
+        <img id="died2" src="./You Died - Exotic Plant.jpg">
+      </a-assets>
+
+      <!--Cam and Cursor-->
+      <a-entity cursor="rayOrigin: mouse" raycaster></a-entity>
+      <a-entity camera look-controls position = "0 1.6 0"> </a-entity>
+
+    <!-- Object changes color on Click-->
+-   <a-box  id = "colorObject" 
+      position = "1.5 5 -9" 
+      color = "purple"
+      clickable>
+      </a-box>
+
+    <!-- Box reloads page when clicked -->
+    <a-box id="reloadObject" 
+    position="1.5 3 -9" 
+    color="green" 
+    clickable>
+    </a-box>
+
+    <!--Object changes color on keyboard pres-->
+    <a-sphere id = "pressObject"
+        position="0 1.25 -5" 
+        radius="1.25" 
+        color="#EF2D5E"></a-sphere>
+ 
+
+      <!--Dummy Objects: NO Special function-->
+      <a-box id = "blue" position="-1 0.5 -3" rotation="0 45 0" color="pink"></a-box>
+      <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+        
+      <!-- You Died Screens Casted on  planes -->
+      <a-plane position="0 0 -3" rotation="-90 0 0" width="4" height="4" color="#7BC8B6"></a-plane>
+      <a-image src="#died" position="-10 0 -3" rotation="0 0 0" width="16" height="15"></a-image>
+      <a-image src="#died2" position="10 0 -3" rotation="0 0 0" width="16" height="15"></a-image>
+    </a-scene>
+  
+     <script src = "colorTest.js"></script>
+     <script src= "aframeReload.js"></script>
+     <script src= "keyboardPress.js"></script>
+    
+  </body>
+</html>

@@ -3,9 +3,34 @@
     <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
     <!-- Script for hovering events -->
     <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+    <style>
+      #overlay {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        opacity: 0;
+        z-index: 0;
+      }
+    </style>
+    <style>
+      #general-timer {
+        position: fixed;
+        top: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 10%;
+        height: 10%;
+        opacity: 1;
+        z-index: 1000;
+      }
+    </style>
   </head>
   <body>
-    <a-scene>
+    <a-scene id="main-scene">
       <a-assets>
         <!-- Fish bowl with pebbles -->
         <a-asset-item id="bowl-obj" src="BowlWPebbles.obj"></a-asset-item>
@@ -16,7 +41,7 @@
         <!-- Sign without note -->
         <a-asset-item id="sign-obj" src="SignNONote.obj"></a-asset-item>
         <a-asset-item id="sign-mtl" src="SignNONote.mtl"></a-asset-item>
-        <img id="sign-text" src="Gone.png">
+        <img id="sign-text" src="Gone.png" />
         <!-- Both kelp versions -->
         <a-asset-item id="kelp1-obj" src="KelpV1.obj"></a-asset-item>
         <a-asset-item id="kelp1-mtl" src="KelpV1.mtl"></a-asset-item>
@@ -26,64 +51,76 @@
         <a-asset-item id="note-obj" src="Note.obj"></a-asset-item>
         <a-asset-item id="note-mtl" src="Note.mtl"></a-asset-item>
         <!-- Zenaid assets -->
-        <img id="sky-lake-ending" src="sky-lake-ending.png">
-        <img id="sky-bedroom" src="walltest1.png">
-        <img id="dialogue-narrator" src="dialogue-narrator.png">
+        <img id="sky-lake-ending" src="sky-lake-ending.png" />
+        <img id="sky-bedroom" src="walltest1.png" />
+        <img id="dialogue-narrator" src="dialogue-narrator.png" />
       </a-assets>
 
       <!-- Models -->
       <a-entity
         class="collidable"
         obj-model="obj: #bowl-obj; mtl: #bowl-mtl"
-        position="0 0 -14">
+        position="0 0 -14"
+      >
       </a-entity>
-      <a-entity 
+      <a-entity
         class="collidable"
         obj-model="obj: #castle-obj; mtl: #castle-mtl"
         position="-0.5 -0.6 -14.5"
-        scale="1 1 1">
+        scale="1 1 1"
+      >
       </a-entity>
-      <a-entity 
+      <a-entity
         class="collidable"
         obj-model="obj: #kelp1-obj; mtl: #kelp1-mtl"
         position="-16.3 0.082 -10.8"
         rotation="0 82 0"
         interact-highlight
-        click-kelp>
+        click-kelp
+      >
       </a-entity>
-      <a-entity 
+      <a-entity
         class="collidable"
         obj-model="obj: #kelp2-obj; mtl: #kelp2-mtl"
         position="10.348 0.082 -13.613"
         rotation="0 -30 0"
         interact-highlight
-        click-kelp>
+        click-kelp
+      >
       </a-entity>
-      <a-entity 
+      <a-entity
         class="collidable"
         obj-model="obj: #sign-obj; mtl: #sign-mtl"
         position="0.287 0 -14.074"
-        rotation="0 0 0">
+        rotation="0 0 0"
+      >
       </a-entity>
       <a-entity>
-        <a-image 
+        <a-image
           src="#sign-text"
           position="6.567 0.593 -3.838"
           rotation="0 -65 -90"
-          scale="2.5 4.5 1">
-          </a-image>
+          scale="2.5 4.5 1"
+        >
+        </a-image>
       </a-entity>
       <a-entity
         obj-model="obj: #note-obj; mtl: #note-mtl"
         position="13.968 -0.059 8.743"
         rotation="0 179.990 0"
         interact-highlight
-        click-note>
+        click-note
+      >
       </a-entity>
 
       <!-- ROOM SCENE: day -->
       <a-entity>
-        <a-box position="-1.092 -3.510 -4.642" scale="30 0.2 30" rotation="0 60 0" color="#4C3228"></a-box>
+        <a-box
+          position="-1.092 -3.510 -4.642"
+          scale="30 0.2 30"
+          rotation="0 60 0"
+          color="#4C3228"
+        ></a-box>
         <!--
         <a-plane>
           <a-image id="left-tile" class="tile" position="-4.5 -0.5 -8" src="#left-tile-image" width="4" height="3"
@@ -91,19 +128,145 @@
         </a-plane>
         -->
         <a-sky>
-          <a-sphere radius="70" position="0 25 0" rotation="0 -45 0" src="#sky-bedroom"
-            animation="property:color; from: #444466; to:#FFFFFF; duration: 9000" material="side: double; shader:flat;">
+          <a-sphere
+            radius="70"
+            position="0 25 0"
+            rotation="0 -45 0"
+            src="#sky-bedroom"
+            animation="property:color; from: #444466; to:#FFFFFF; duration: 9000"
+            material="side: double; shader:flat;"
+          >
           </a-sphere>
         </a-sky>
       </a-entity>
-    
+
       <!-- Camera -->
-      <a-entity 
-        camera look-controls position="0 1.6 0"
-        rotation-reader>\
+      <a-entity camera look-controls position="0 1.6 0" rotation-reader
+        >\
         <a-cursor color="white" position="0 0 -1"></a-cursor>
       </a-entity>
+
+      <!-- Timer -->
+      <h1 id="general-timer"></h1>
+      <script>
+        var start = new Date().getTime();
+        var countDownDuration = 1 * 10 * 1000;
+        var end = start + countDownDuration;
+
+        var x = setInterval(function () {
+          var now = new Date().getTime();
+          var timeRemaining = end - now;
+
+          var minutes = Math.floor(
+            (timeRemaining % (1000 * 60 * 60)) / (1000 * 60)
+          );
+          var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+          document.getElementById("general-timer").innerHTML =
+            minutes + "m " + seconds + "s ";
+
+          if (timeRemaining < 0) {
+            clearInterval(x);
+            switchScenes();
+          }
+        }, 1000);
+
+        function switchScenes() {
+          document.getElementById("main-scene").style.display = "none";
+          document.getElementById("toilet-scene").style.display = "block";
+          triggerToiletSceneAnimations();
+        }
+      </script>
     </a-scene>
+
+    <!-- TOILET SCENE -->
+    <a-scene id="toilet-scene" style="display: none">
+      <a-assets>
+        <audio id="plunge" src="Kevin/sound_track/plunge.wav"></audio>
+        <audio id="flush" src="Kevin/sound_track/flush.mp3"></audio>
+        <a-asset-item
+          id="toiletModel"
+          src="Kevin/toilet/scene.gltf"
+        ></a-asset-item>
+      </a-assets>
+
+      <a-entity camera look-controls>
+        <a-camera id="cameraRig" position="0 3 0"></a-camera>
+      </a-entity>
+
+      <a-entity
+        gltf-model="#toiletModel"
+        position="0 0 -2"
+        rotation="0 0 0"
+        scale="6 6 6"
+      ></a-entity>
+
+      <a-plane
+        id="toilet-water"
+        position="-0.001 1.647 0.555"
+        rotation="-90 0 0"
+        geometry="primitive: circle; radius: 0.8;"
+        material="src: url(Kevin/toilet/water_texture.jpg); repeat: 2 2; opacity: 0.1;"
+      ></a-plane>
+
+      <a-plane
+        id="floor"
+        position="0 0 0"
+        rotation="-90 0 0"
+        width="12"
+        height="12"
+        material="src: url(Kevin/floor_tile/tile.jpg); repeat: 2 2;"
+      ></a-plane>
+
+      <a-sky color="#ECECEC"></a-sky>
+
+      <div id="overlay"></div>
+
+      <script>
+        function triggerToiletSceneAnimations() {
+          var cameraRig = document.getElementById("cameraRig");
+          cameraRig.setAttribute(
+            "animation",
+            "property: position; to: 0 1.25 0; dur: 3000;"
+          );
+
+          function onAnimationComplete() {
+            var plunge = document.getElementById("plunge");
+            plunge.play();
+
+            setTimeout(function () {
+              var flush = document.getElementById("flush");
+              flush.play();
+
+              setTimeout(function () {
+                cameraRig.setAttribute(
+                  "animation",
+                  "property: rotation; to: 0 1800 0; dur: 5000; easing: linear; loop: false;"
+                );
+
+                var overlay = document.getElementById("overlay");
+                overlay.style.position = "fixed";
+                overlay.style.zIndex = "1000";
+                overlay.style.transition = "opacity 5.5s ease";
+                overlay.style.opacity = "1";
+
+                setTimeout(function () {
+                  // window.location.href = "https://google.com";
+                }, 5000);
+              }, 500);
+            }, 4000);
+
+            cameraRig.removeEventListener(
+              "animationcomplete",
+              onAnimationComplete
+            );
+          }
+
+          cameraRig.addEventListener("animationcomplete", onAnimationComplete);
+        }
+      </script>
+    </a-scene>
+
     <script src="main.js"></script>
   </body>
 </html>

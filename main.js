@@ -187,15 +187,29 @@ AFRAME.registerComponent("three-min", {
 });
 
 // CAMERA ROTATION
-AFRAME.registerComponent("rotation-readerS", { //Shaniah's version (main scene only)
-  tick: function() {
+AFRAME.registerComponent("rotation-reader1", { //Shaniah's version (main scene only)
+  tick: function () {
     var rotation = this.el.getAttribute('rotation');
     var delayInMilliseconds = 5000; //5 seconds
-  
-    if (rotation.z > 45)  {
-        console.log("Hit threshold");
-      setTimeout(function() {console.log("Triggered lake ending");}, delayInMilliseconds);
-    } 
+
+    var pinkBox = document.getElementById('pinkBox')
+
+    if (rotation.x > 45) {
+      console.log("Hit threshold");
+      setTimeout(function () {
+        var bgm = document.getElementById("fish-tank");
+        bgm.pause();
+        document.getElementById("main-scene").style.display = "none";
+        document.getElementById("toilet-scene").style.display = "block";
+        triggerToiletSceneAnimations("kelp-scene");
+      }, delayInMilliseconds);
+
+      setTimeout(function () { pinkBox.setAttribute('color', 'blue'); }, delayInMilliseconds);
+      //SetTimeout(function() {triggerToiletSceneAnimations("kelp-scene");}, delayInMilliseconds);
+
+      //works -- TO SUBSTITUTE WITH LAKE ENDING SCENE
+
+    }
   }
 });
 

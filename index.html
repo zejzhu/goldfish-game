@@ -1,603 +1,441 @@
 <html>
-  <head>
-    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
-    <!-- Script for hovering events -->
-    <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
-    <style>
-      #overlay {
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: black;
-        opacity: 0;
-        z-index: 0;
-      }
-    </style>
-    <style>
-      #general-timer {
-        position: fixed;
-        top: 0;
-        right: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 10%;
-        height: 10%;
-        opacity: 1;
-        z-index: 1000;
-      }
-    </style>
-  </head>
-  <body>
-    <a-scene
-      id="main-scene"
-      fog="type:linear; color:#55AA22; near:125; far:125;"
-    >
-      <a-assets>
-        <!-- Fish bowl with pebbles -->
-        <a-asset-item id="bowl-obj" src="BowlWPebbles.obj"></a-asset-item>
-        <a-asset-item id="bowl-mtl" src="BowlWPebbles.mtl"></a-asset-item>
-        <!-- Properly textured castle -->
-        <a-asset-item id="castle-obj" src="Base.obj"></a-asset-item>
-        <a-asset-item id="castle-mtl" src="Base.mtl"></a-asset-item>
-        <!-- Sign without note -->
-        <a-asset-item id="sign-obj" src="SignNONote.obj"></a-asset-item>
-        <a-asset-item id="sign-mtl" src="SignNONote.mtl"></a-asset-item>
-        <img id="sign-text" src="Gone.png" />
-        <!-- Both kelp versions -->
-        <a-asset-item id="kelp1-obj" src="KelpV1.obj"></a-asset-item>
-        <a-asset-item id="kelp1-mtl" src="KelpV1.mtl"></a-asset-item>
-        <a-asset-item id="kelp2-obj" src="KelpV2.obj"></a-asset-item>
-        <a-asset-item id="kelp2-mtl" src="KelpV2.mtl"></a-asset-item>
-        <!-- Note -->
-        <a-asset-item id="note-obj" src="Note.obj"></a-asset-item>
-        <a-asset-item id="note-mtl" src="Note.mtl"></a-asset-item>
-        <!-- Zenaid assets -->
-        <img id="sky-lake-ending" src="sky-lake-ending.png" />
-        <img id="sky-bedroom" src="walltest1.png" />
-        <img id="dialogue-narrator" src="dialogue-narrator.png" />
-        <!-- Fish Tank Sound -->
-        <audio id="fish-tank" src="Kevin/sound_track/fish_tank.flac"></audio>
-        <!-- Textbox images -->
-        <img id="child01" src="Assets/dialogues/child01.png" />
-        <img id="child02" src="Assets/dialogues/child02.png" />
-        <img id="nar01" src="Assets/dialogues/narrator01.png" />
-        <img id="nar02" src="Assets/dialogues/narrator02.png" />
-        <img id="nar03" src="Assets/dialogues/narrator03.png" />
-        <!-- MOVE TO lake ending scene later -->
-        <img id="note01" src="Assets/dialogues/note01.png" />
-        <img id="you01" src="Assets/dialogues/you01.png" />
-        <img id="you02" src="Assets/dialogues/you02.png" />
-        <img id="you03" src="Assets/dialogues/you03.png" />
-        <img id="kelp01" src="Assets/dialogues/youkelp01.png" />
-        <img id="kelp02" src="Assets/dialogues/youkelp02.png" />
-      </a-assets>
 
-      <!-- TEXTBOXES -->
-      <!-- On click note -->
-      <a-entity id="note-1" visible="false"
-        ><a-plane position="0 0.5 -6" width="10" height="3" opacity="1"
-          ><a-image class="tile" width="10" height="3" src="#note01"></a-image>
-        </a-plane>
-      </a-entity>
+<head>
+  <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+  <!-- Script for hovering events -->
+  <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
+  <style>
+    #overlay {
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: black;
+      opacity: 0;
+      z-index: 0;
+    }
+  </style>
+  <style>
+    #general-timer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 10%;
+      height: 10%;
+      opacity: 1;
+      z-index: 1000;
+    }
+  </style>
+</head>
 
-      <!-- On load -->
-      <a-entity id="child-1" visible="false"
-        ><a-plane position="0 0.5 -6" width="10" height="3" opacity="1"
-          ><a-image class="tile" width="10" height="3" src="#child01"></a-image>
-        </a-plane>
-      </a-entity>
+<body>
+  <a-scene id="main-scene" fog="type:linear; color:#55AA22; near:125; far:125;">
+    <a-assets>
+      <!-- Fish bowl with pebbles -->
+      <a-asset-item id="bowl-obj" src="BowlWPebbles.obj"></a-asset-item>
+      <a-asset-item id="bowl-mtl" src="BowlWPebbles.mtl"></a-asset-item>
+      <!-- Properly textured castle -->
+      <a-asset-item id="castle-obj" src="Base.obj"></a-asset-item>
+      <a-asset-item id="castle-mtl" src="Base.mtl"></a-asset-item>
+      <!-- Sign without note -->
+      <a-asset-item id="sign-obj" src="SignNONote.obj"></a-asset-item>
+      <a-asset-item id="sign-mtl" src="SignNONote.mtl"></a-asset-item>
+      <img id="sign-text" src="Gone.png" />
+      <!-- Both kelp versions -->
+      <a-asset-item id="kelp1-obj" src="KelpV1.obj"></a-asset-item>
+      <a-asset-item id="kelp1-mtl" src="KelpV1.mtl"></a-asset-item>
+      <a-asset-item id="kelp2-obj" src="KelpV2.obj"></a-asset-item>
+      <a-asset-item id="kelp2-mtl" src="KelpV2.mtl"></a-asset-item>
+      <!-- Note -->
+      <a-asset-item id="note-obj" src="Note.obj"></a-asset-item>
+      <a-asset-item id="note-mtl" src="Note.mtl"></a-asset-item>
+      <!-- Zenaid assets -->
+      <img id="sky-lake-ending" src="sky-lake-ending.png" />
+      <img id="sky-bedroom" src="walltest1.png" />
+      <img id="dialogue-narrator" src="dialogue-narrator.png" />
+      <!-- Fish Tank Sound -->
+      <audio id="fish-tank" src="Kevin/sound_track/fish_tank.flac"></audio>
+      <!-- Textbox images -->
+      <img id="child01" src="Assets/dialogues/child01.png" />
+      <img id="child02" src="Assets/dialogues/child02.png" />
+      <img id="nar01" src="Assets/dialogues/narrator01.png" />
+      <img id="nar02" src="Assets/dialogues/narrator02.png" />
+      <img id="nar03" src="Assets/dialogues/narrator03.png" />
+      <!-- MOVE TO lake ending scene later -->
+      <img id="note01" src="Assets/dialogues/note01.png" />
+      <img id="you01" src="Assets/dialogues/you01.png" />
+      <img id="you02" src="Assets/dialogues/you02.png" />
+      <img id="you03" src="Assets/dialogues/you03.png" />
+      <img id="kelp01" src="Assets/dialogues/youkelp01.png" />
+      <img id="kelp02" src="Assets/dialogues/youkelp02.png" />
+    </a-assets>
 
-      <a-entity id="nar-1" visible="false"
-        ><a-plane position="0 0.5 -6" width="10" height="3" opacity="1"
-          ><a-image class="tile" width="10" height="3" src="#nar01"></a-image>
-        </a-plane>
-      </a-entity>
+    <!-- TEXTBOXES -->
+    <!-- On click note -->
+    <a-entity id="note-1" visible="false"><a-plane position="0 0.5 -6" width="10" height="3" opacity="1"><a-image
+          class="tile" width="10" height="3" src="#note01"></a-image>
+      </a-plane>
+    </a-entity>
 
-      <a-entity id="you-1" visible="false"
-        ><a-plane position="0 0.5 -6" width="10" height="3" opacity="1"
-          ><a-image class="tile" width="10" height="3" src="#you01"></a-image>
-        </a-plane>
-      </a-entity>
+    <!-- On load -->
+    <a-entity id="child-1" visible="false"><a-plane position="0 0.5 -6" width="10" height="3" opacity="1"><a-image
+          class="tile" width="10" height="3" src="#child01"></a-image>
+      </a-plane>
+    </a-entity>
 
-      <!-- On eat kelp (counter) -->
-      <a-entity id="kelp-1" visible="false"
-        ><a-plane
-          position="-1.171 0.5 6.4"
-          rotation="0 -180 0"
-          width="10"
-          height="3"
-          opacity="1"
-          ><a-image class="tile" width="10" height="3" src="#kelp01"></a-image>
-        </a-plane>
-      </a-entity>
+    <a-entity id="nar-1" visible="false"><a-plane position="0 0.5 -6" width="10" height="3" opacity="1"><a-image
+          class="tile" width="10" height="3" src="#nar01"></a-image>
+      </a-plane>
+    </a-entity>
 
-      <a-entity id="kelp-2" visible="false"
-        ><a-plane
-          position="-1.171 0.5 6.4"
-          rotation="0 -180 0"
-          width="10"
-          height="3"
-          opacity="1"
-          ><a-image class="tile" width="10" height="3" src="#kelp02"></a-image>
-        </a-plane>
-      </a-entity>
+    <a-entity id="you-1" visible="false"><a-plane position="0 0.5 -6" width="10" height="3" opacity="1"><a-image
+          class="tile" width="10" height="3" src="#you01"></a-image>
+      </a-plane>
+    </a-entity>
 
-      <!-- After 1 min -->
-      <a-entity id="you-2" visible="false"
-        ><a-plane position="0 0.5 -6" width="10" height="3" opacity="1"
-          ><a-image class="tile" width="10" height="3" src="#you02"></a-image>
-        </a-plane>
-      </a-entity>
+    <!-- On eat kelp (counter) -->
+    <a-entity id="kelp-1" visible="false"><a-plane position="-1.171 0.5 6.4" rotation="0 -180 0" width="10" height="3"
+        opacity="1"><a-image class="tile" width="10" height="3" src="#kelp01"></a-image>
+      </a-plane>
+    </a-entity>
 
-      <a-entity id="nar-2" visible="false"
-        ><a-plane position="0 0.5 -6" width="10" height="3" opacity="1"
-          ><a-image class="tile" width="10" height="3" src="#nar02"></a-image>
-        </a-plane>
-      </a-entity>
+    <a-entity id="kelp-2" visible="false"><a-plane position="-1.171 0.5 6.4" rotation="0 -180 0" width="10" height="3"
+        opacity="1"><a-image class="tile" width="10" height="3" src="#kelp02"></a-image>
+      </a-plane>
+    </a-entity>
 
-      <!-- After 2 min -->
-      <a-entity id="you-3" visible="false"
-        ><a-plane position="0 0.5 -6" width="10" height="3" opacity="1"
-          ><a-image class="tile" width="10" height="3" src="#you03"></a-image>
-        </a-plane>
-      </a-entity>
+    <!-- After 1 min -->
+    <a-entity id="you-2" visible="false"><a-plane position="0 0.5 -6" width="10" height="3" opacity="1"><a-image
+          class="tile" width="10" height="3" src="#you02"></a-image>
+      </a-plane>
+    </a-entity>
 
-      <!-- Models -->
-      <a-entity
-        class="collidable"
-        obj-model="obj: #bowl-obj; mtl: #bowl-mtl"
-        position="0 0 -14"
-        one-min
-        two-min
-        three-min
-      >
-      </a-entity>
-      <a-entity
-        class="collidable"
-        obj-model="obj: #castle-obj; mtl: #castle-mtl"
-        position="-0.5 -0.6 -14.5"
-        scale="1 1 1"
-      >
-      </a-entity>
-      <a-entity
-        class="collidable"
-        obj-model="obj: #kelp1-obj; mtl: #kelp1-mtl"
-        position="-16.3 0.082 -10.8"
-        rotation="0 82 0"
-        interact-highlight
-        click-kelp
-      >
-      </a-entity>
-      <a-entity
-        class="collidable"
-        obj-model="obj: #kelp2-obj; mtl: #kelp2-mtl"
-        position="10.348 0.082 -13.613"
-        rotation="0 -30 0"
-        interact-highlight
-        click-kelp
-      >
-      </a-entity>
-      <a-entity
-        class="collidable"
-        obj-model="obj: #sign-obj; mtl: #sign-mtl"
-        position="0.287 0 -14.074"
-        rotation="0 0 0"
-      >
-      </a-entity>
-      <a-entity>
-        <a-image
-          src="#sign-text"
-          position="6.567 0.593 -3.838"
-          rotation="0 -65 -90"
-          scale="2.5 4.5 1"
-        >
-        </a-image>
-      </a-entity>
-      <a-entity
-        obj-model="obj: #note-obj; mtl: #note-mtl"
-        position="13.968 -0.059 8.743"
-        rotation="0 179.990 0"
-        interact-highlight
-        click-note
-      >
-      </a-entity>
+    <a-entity id="nar-2" visible="false"><a-plane position="0 0.5 -6" width="10" height="3" opacity="1"><a-image
+          class="tile" width="10" height="3" src="#nar02"></a-image>
+      </a-plane>
+    </a-entity>
 
-      <!-- ROOM SCENE: day -->
-      <a-entity>
-        <a-box
-          position="-1.092 -3.510 -4.642"
-          scale="30 0.2 30"
-          rotation="0 60 0"
-          color="#4C3228"
-        ></a-box>
-        <!--
+    <!-- After 2 min -->
+    <a-entity id="you-3" visible="false"><a-plane position="0 0.5 -6" width="10" height="3" opacity="1"><a-image
+          class="tile" width="10" height="3" src="#you03"></a-image>
+      </a-plane>
+    </a-entity>
+
+    <!-- Models -->
+    <a-entity class="collidable" obj-model="obj: #bowl-obj; mtl: #bowl-mtl" position="0 0 -14" one-min two-min
+      three-min>
+    </a-entity>
+    <a-entity class="collidable" obj-model="obj: #castle-obj; mtl: #castle-mtl" position="-0.5 -0.6 -14.5"
+      scale="1 1 1">
+    </a-entity>
+    <a-entity class="collidable" obj-model="obj: #kelp1-obj; mtl: #kelp1-mtl" position="-16.3 0.082 -10.8"
+      rotation="0 82 0" interact-highlight click-kelp>
+    </a-entity>
+    <a-entity class="collidable" obj-model="obj: #kelp2-obj; mtl: #kelp2-mtl" position="10.348 0.082 -13.613"
+      rotation="0 -30 0" interact-highlight click-kelp>
+    </a-entity>
+    <a-entity class="collidable" obj-model="obj: #sign-obj; mtl: #sign-mtl" position="0.287 0 -14.074" rotation="0 0 0">
+    </a-entity>
+    <a-entity>
+      <a-image src="#sign-text" position="6.567 0.593 -3.838" rotation="0 -65 -90" scale="2.5 4.5 1">
+      </a-image>
+    </a-entity>
+    <a-entity obj-model="obj: #note-obj; mtl: #note-mtl" position="13.968 -0.059 8.743" rotation="0 179.990 0"
+      interact-highlight click-note>
+    </a-entity>
+
+    <!-- ROOM SCENE: day -->
+    <a-entity>
+      <a-box position="-1.092 -3.510 -4.642" scale="30 0.2 30" rotation="0 60 0" color="#4C3228"></a-box>
+      <!--
         <a-plane>
           <a-image id="left-tile" class="tile" position="-4.5 -0.5 -8" src="#left-tile-image" width="4" height="3"
             opacity="0"></a-image>
         </a-plane>
         -->
-        <a-sky>
-          <a-sphere
-            radius="70"
-            position="0 25 0"
-            rotation="0 -45 0"
-            src="#sky-bedroom"
-            animation="property:color; from: #444466; to:#FFFFFF; duration: 9000"
-            material="side: double; shader:flat;"
-          >
-          </a-sphere>
-        </a-sky>
-      </a-entity>
+      <a-sky>
+        <a-sphere radius="70" position="0 25 0" rotation="0 -45 0" src="#sky-bedroom"
+          animation="property:color; from: #444466; to:#FFFFFF; duration: 9000" material="side: double; shader:flat;">
+        </a-sphere>
+      </a-sky>
+    </a-entity>
 
-      <!-- Camera -->
-      <a-entity
-        id="main-camera"
-        camera
-        look-controls
-        position="0 1.6 0"
-        rotation-reader
-        rotation-readerS
-        >\
-        <a-cursor color="white" position="0 0 -1"></a-cursor>
-      </a-entity>
+    <!-- Camera -->
+    <a-entity id="main-camera" camera look-controls position="0 1.6 0" rotation-reader rotation-reader1>\
+      <a-cursor color="white" position="0 0 -1"></a-cursor>
+    </a-entity>
 
-      <!-- Fish Tank Sound Effect -->
-      <div id="start">
-        <a href="#" style="text-decoration: none">
-          <h1 id="start-button">Click to Start!</h1>
-        </a>
-      </div>
+    <!-- Fish Tank Sound Effect -->
+    <div id="start">
+      <a href="#" style="text-decoration: none">
+        <h1 id="start-button">Click to Start!</h1>
+      </a>
+    </div>
 
-      <style>
-        #start {
-          position: fixed;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          width: 100%;
-          height: 100%;
-          opacity: 1;
-          z-index: 1000;
-        }
+    <style>
+      #start {
+        position: fixed;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        opacity: 1;
+        z-index: 1000;
+      }
 
-        #start-button {
-          font-size: 24px;
-          padding: 15px 30px;
-          color: #fff;
-          background-color: #007bff;
-          border-radius: 10px;
-          text-align: center;
-          cursor: pointer;
-          transition: background-color 0.3s ease, color 0.3s ease;
-        }
+      #start-button {
+        font-size: 24px;
+        padding: 15px 30px;
+        color: #fff;
+        background-color: #007bff;
+        border-radius: 10px;
+        text-align: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
 
-        #start-button:hover {
-          background-color: #0056b3;
-          color: #fff;
-        }
-      </style>
+      #start-button:hover {
+        background-color: #0056b3;
+        color: #fff;
+      }
+    </style>
 
-      <script>
-        window.onload = function () {
-          var startButton = document.getElementById("start");
-          startButton.addEventListener("click", function () {
-            var bgm = document.getElementById("fish-tank");
-            bgm.play();
-            startButton.style.display = "none";
-            event.preventDefault();
-            //loading first textboxes
-            var box1 = document.getElementById("child-1");
-            var box2 = document.getElementById("nar-1");
-            var box3 = document.getElementById("you-1");
-            box1.object3D.visible = true;
-            var first = true;
-            var second = false;
-            var third = false;
-
-            document.addEventListener("keydown", function (event) {
-              if (event.key === "h") {
-                if (first == true) {
-                  console.log(first);
-                  box1.object3D.visible = false;
-                  box2.object3D.visible = true;
-                  second = true;
-                  first = false;
-                } else if (second == true) {
-                  console.log(second);
-                  box2.object3D.visible = false;
-                  box3.object3D.visible = true;
-                  third = true;
-                  second = false;
-                } else if (third == true) {
-                  console.log(third);
-                  box3.object3D.visible = false;
-                  third = false;
-                }
-              }
-            });
-          });
-        };
-      </script>
-
-      <!-- Timer -->
-      <h1 id="general-timer"></h1>
-      <script>
-        var start = new Date().getTime();
-        var countDownDuration = 18 * 10 * 1000;
-        var end = start + countDownDuration;
-
-        var x = setInterval(function () {
-          var now = new Date().getTime();
-          var timeRemaining = end - now;
-
-          var minutes = Math.floor(
-            (timeRemaining % (1000 * 60 * 60)) / (1000 * 60)
-          );
-          var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
-
-          document.getElementById("general-timer").innerHTML =
-            minutes + "m " + seconds + "s ";
-
-          if (timeRemaining < 0) {
-            clearInterval(x);
-          }
-        }, 1000);
-
-        function switchScenes() {
+    <script>
+      window.onload = function () {
+        var startButton = document.getElementById("start");
+        startButton.addEventListener("click", function () {
           var bgm = document.getElementById("fish-tank");
-          bgm.pause();
-          document.getElementById("main-scene").style.display = "none";
-          document.getElementById("toilet-scene").style.display = "block";
-          triggerToiletSceneAnimations();
+          bgm.play();
+          startButton.style.display = "none";
+          event.preventDefault();
+          //loading first textboxes
+          var box1 = document.getElementById("child-1");
+          var box2 = document.getElementById("nar-1");
+          var box3 = document.getElementById("you-1");
+          box1.object3D.visible = true;
+          var first = true;
+          var second = false;
+          var third = false;
+
+          document.addEventListener("keydown", function (event) {
+            if (event.key === "h") {
+              if (first == true) {
+                console.log(first);
+                box1.object3D.visible = false;
+                box2.object3D.visible = true;
+                second = true;
+                first = false;
+              } else if (second == true) {
+                console.log(second);
+                box2.object3D.visible = false;
+                box3.object3D.visible = true;
+                third = true;
+                second = false;
+              } else if (third == true) {
+                console.log(third);
+                box3.object3D.visible = false;
+                third = false;
+              }
+            }
+          });
+        });
+      };
+    </script>
+
+    <!-- Timer -->
+    <h1 id="general-timer"></h1>
+    <script>
+      var start = new Date().getTime();
+      var countDownDuration = 18 * 10 * 1000;
+      var end = start + countDownDuration;
+
+      var x = setInterval(function () {
+        var now = new Date().getTime();
+        var timeRemaining = end - now;
+
+        var minutes = Math.floor(
+          (timeRemaining % (1000 * 60 * 60)) / (1000 * 60)
+        );
+        var seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+        document.getElementById("general-timer").innerHTML =
+          minutes + "m " + seconds + "s ";
+
+        if (timeRemaining < 0) {
+          clearInterval(x);
         }
-      </script>
-    </a-scene>
+      }, 1000);
 
-    <!-- TOILET SCENE -->
-    <a-scene id="toilet-scene" style="display: none">
-      <a-assets>
-        <audio id="plunge" src="Kevin/sound_track/plunge.wav"></audio>
-        <audio id="flush" src="Kevin/sound_track/flush.mp3"></audio>
-        <a-asset-item
-          id="toiletModel"
-          src="Kevin/toilet/scene.gltf"
-        ></a-asset-item>
-      </a-assets>
+      function switchScenes() {
+        var bgm = document.getElementById("fish-tank");
+        bgm.pause();
+        document.getElementById("main-scene").style.display = "none";
+        document.getElementById("toilet-scene").style.display = "block";
+        triggerToiletSceneAnimations();
+      }
+    </script>
+  </a-scene>
 
-      <a-entity camera look-controls>
-        <a-camera
-          id="cameraRig"
-          position="0 3 0"
-          wasd-controls-enabled="false"
-        ></a-camera>
-      </a-entity>
+  <!-- TOILET SCENE -->
+  <a-scene id="toilet-scene" style="display: none">
+    <a-assets>
+      <audio id="plunge" src="Kevin/sound_track/plunge.wav"></audio>
+      <audio id="flush" src="Kevin/sound_track/flush.mp3"></audio>
+      <a-asset-item id="toiletModel" src="Kevin/toilet/scene.gltf"></a-asset-item>
+    </a-assets>
 
-      <a-entity
-        gltf-model="#toiletModel"
-        position="0 0 -2"
-        rotation="0 0 0"
-        scale="4 4 4"
-      ></a-entity>
+    <a-entity camera look-controls>
+      <a-camera id="cameraRig" position="0 3 0" wasd-controls-enabled="false"></a-camera>
+    </a-entity>
 
-      <a-plane
-        id="toilet-water"
-        position="0.008 1.108 -0.288"
-        rotation="-90 0 0"
-        geometry="primitive: circle; radius: 0.4;"
-        material="src: url(toilet/water_texture.jpg); repeat: 2 2; opacity: 0.1;"
-      ></a-plane>
+    <a-entity gltf-model="#toiletModel" position="0 0 -2" rotation="0 0 0" scale="4 4 4"></a-entity>
 
-      <a-plane
-        id="floor"
-        position="0 0 0"
-        rotation="-90 0 0"
-        width="12"
-        height="12"
-        material="src: url(Kevin/floor_tile/tile.jpg); repeat: 2 2;"
-      ></a-plane>
+    <a-plane id="toilet-water" position="0.008 1.108 -0.288" rotation="-90 0 0"
+      geometry="primitive: circle; radius: 0.4;"
+      material="src: url(toilet/water_texture.jpg); repeat: 2 2; opacity: 0.1;"></a-plane>
 
-      <a-sky color="#ECECEC"></a-sky>
+    <a-plane id="floor" position="0 0 0" rotation="-90 0 0" width="12" height="12"
+      material="src: url(Kevin/floor_tile/tile.jpg); repeat: 2 2;"></a-plane>
 
-      <div id="overlay"></div>
+    <a-sky color="#ECECEC"></a-sky>
 
-      <script>
-        function triggerToiletSceneAnimations(scene) {
-          var cameraRig = document.getElementById("cameraRig");
-          cameraRig.setAttribute(
-            "animation",
-            "property: position; to: 0 1.25 0; dur: 3000;"
-          );
+    <div id="overlay"></div>
 
-          function onAnimationComplete() {
-            var plunge = document.getElementById("plunge");
-            plunge.play();
+    <script>
+      function triggerToiletSceneAnimations(scene) {
+        var cameraRig = document.getElementById("cameraRig");
+        cameraRig.setAttribute(
+          "animation",
+          "property: position; to: 0 1.25 0; dur: 3000;"
+        );
+
+        function onAnimationComplete() {
+          var plunge = document.getElementById("plunge");
+          plunge.play();
+
+          setTimeout(function () {
+            var flush = document.getElementById("flush");
+            flush.play();
 
             setTimeout(function () {
-              var flush = document.getElementById("flush");
-              flush.play();
+              cameraRig.setAttribute(
+                "animation",
+                "property: rotation; to: 0 1800 0; dur: 5000; easing: linear; loop: false;"
+              );
+
+              var overlay = document.getElementById("overlay");
+              overlay.style.position = "fixed";
+              overlay.style.zIndex = "1000";
+              overlay.style.transition = "opacity 5.5s ease";
+              overlay.style.opacity = "1";
 
               setTimeout(function () {
-                cameraRig.setAttribute(
-                  "animation",
-                  "property: rotation; to: 0 1800 0; dur: 5000; easing: linear; loop: false;"
-                );
+                document.getElementById("toilet-scene").style.display =
+                  "none";
+                document.getElementById(scene).style.display = "block";
+              }, 5000);
+            }, 500);
+          }, 4000);
 
-                var overlay = document.getElementById("overlay");
-                overlay.style.position = "fixed";
-                overlay.style.zIndex = "1000";
-                overlay.style.transition = "opacity 5.5s ease";
-                overlay.style.opacity = "1";
-
-                setTimeout(function () {
-                  document.getElementById("toilet-scene").style.display =
-                    "none";
-                  document.getElementById(scene).style.display = "block";
-                }, 5000);
-              }, 500);
-            }, 4000);
-
-            cameraRig.removeEventListener(
-              "animationcomplete",
-              onAnimationComplete
-            );
-          }
-
-          cameraRig.addEventListener("animationcomplete", onAnimationComplete);
+          cameraRig.removeEventListener(
+            "animationcomplete",
+            onAnimationComplete
+          );
         }
-      </script>
-    </a-scene>
 
-    <!-- Algae Death Scene -->
-    <a-scene id="algae-scene" style="display: none">
-      <a-entity>
-        <a-sky>
-          <a-sphere
-            radius="70"
-            position="0 25 0"
-            rotation="0 90 0"
-            src="#sky-limbo"
-            material="side: double; shader:flat;"
-          >
-          </a-sphere>
+        cameraRig.addEventListener("animationcomplete", onAnimationComplete);
+      }
+    </script>
+  </a-scene>
 
-          <a-plane
-            position="0 5 -30"
-            rotation="0 180 0"
-            height="32"
-            width="45"
-            opacity="1"
-          >
-            <!--change src to #death-algae, #death-kelp as needed-->
-            <a-image
-              src="#death-algae"
-              height="32"
-              width="45"
-              position="0 0 0.2"
-            ></a-image>
-          </a-plane>
-        </a-sky>
-      </a-entity>
+  <!-- Algae Death Scene -->
+  <a-scene id="algae-scene" style="display: none">
+    <a-entity>
+      <a-sky>
+        <a-sphere radius="70" position="0 25 0" rotation="0 90 0" src="#sky-limbo"
+          material="side: double; shader:flat;">
+        </a-sphere>
 
-      <a-assets>
-        <img id="sky-limbo" src="sky-limbo.png" />
-        <img id="death-algae" src="Assets/deathalgae.png" />
-        <img id="death-kelp" src="Assets/deathkelp.png" />
-        <img id="escaped" src="Assets/escaped.png" />
-      </a-assets>
+        <a-plane position="0 5 -30" rotation="0 180 0" height="32" width="45" opacity="1">
+          <!--change src to #death-algae, #death-kelp as needed-->
+          <a-image src="#death-algae" height="32" width="45" position="0 0 0.2"></a-image>
+        </a-plane>
+      </a-sky>
+    </a-entity>
 
-      <!-- Camera -->
-      <a-entity
-        id="main-camera"
-        camera
-        look-controls
-        position="0 1.6 0"
-        rotation-reader
-        >\
-        <a-cursor color="white" position="0 0 -1"></a-cursor>
-      </a-entity>
-    </a-scene>
+    <a-assets>
+      <img id="sky-limbo" src="sky-limbo.png" />
+      <img id="death-algae" src="Assets/deathalgae.png" />
+      <img id="death-kelp" src="Assets/deathkelp.png" />
+      <img id="escaped" src="Assets/escaped.png" />
+    </a-assets>
 
-    <!-- Kelp Death Scene -->
-    <a-scene id="kelp-scene" style="display: none">
-      <a-entity>
-        <a-sky>
-          <a-sphere
-            radius="70"
-            position="0 25 0"
-            rotation="0 90 0"
-            src="#sky-limbo"
-            material="side: double; shader:flat;"
-          >
-          </a-sphere>
+    <!-- Camera -->
+    <a-entity id="main-camera" camera look-controls position="0 1.6 0" rotation-reader>\
+      <a-cursor color="white" position="0 0 -1"></a-cursor>
+    </a-entity>
+  </a-scene>
 
-          <a-plane
-            position="0 5 -30"
-            rotation="0 180 0"
-            height="32"
-            width="45"
-            opacity="1"
-          >
-            <!--change src to #death-algae, #death-kelp as needed-->
-            <a-image
-              src="#death-kelp"
-              height="32"
-              width="45"
-              position="0 0 0.2"
-            ></a-image>
-          </a-plane>
-        </a-sky>
-      </a-entity>
+  <!-- Kelp Death Scene -->
+  <a-scene id="kelp-scene" style="display: none">
+    <a-entity>
+      <a-sky>
+        <a-sphere radius="70" position="0 25 0" rotation="0 90 0" src="#sky-limbo"
+          material="side: double; shader:flat;">
+        </a-sphere>
 
-      <a-assets>
-        <img id="sky-limbo" src="sky-limbo.png" />
-        <img id="death-algae" src="Assets/deathalgae.png" />
-        <img id="death-kelp" src="Assets/deathkelp.png" />
-        <img id="escaped" src="Assets/escaped.png" />
-      </a-assets>
+        <a-plane position="0 5 -30" rotation="0 180 0" height="32" width="45" opacity="1">
+          <!--change src to #death-algae, #death-kelp as needed-->
+          <a-image src="#death-kelp" height="32" width="45" position="0 0 0.2"></a-image>
+        </a-plane>
+      </a-sky>
+    </a-entity>
 
-      <!-- Camera -->
-      <a-entity
-        id="main-camera"
-        camera
-        look-controls
-        position="0 1.6 0"
-        rotation-reader
-        >\
-        <a-cursor color="white" position="0 0 -1"></a-cursor>
-      </a-entity>
-    </a-scene>
+    <a-assets>
+      <img id="sky-limbo" src="sky-limbo.png" />
+      <img id="death-algae" src="Assets/deathalgae.png" />
+      <img id="death-kelp" src="Assets/deathkelp.png" />
+      <img id="escaped" src="Assets/escaped.png" />
+    </a-assets>
 
-    <!-- Escape Scene -->
-    <a-scene id="escaped-scene" style="display: none">
-      <a-entity>
-        <a-sky>
-          <a-sphere
-            radius="70"
-            position="0 25 0"
-            rotation="0 90 0"
-            src="#sky-limbo"
-            material="side: double; shader:flat;"
-          >
-          </a-sphere>
+    <!-- Camera -->
+    <a-entity id="main-camera" camera look-controls position="0 1.6 0" rotation-reader>\
+      <a-cursor color="white" position="0 0 -1"></a-cursor>
+    </a-entity>
+  </a-scene>
 
-          <a-plane
-            position="0 5 -30"
-            rotation="0 180 0"
-            height="32"
-            width="45"
-            opacity="1"
-          >
-            <!--change src to #death-algae, #death-kelp as needed-->
-            <a-image
-              src="#escaped"
-              height="32"
-              width="45"
-              position="0 0 0.2"
-            ></a-image>
-          </a-plane>
-        </a-sky>
-      </a-entity>
+  <!-- Escape Scene -->
+  <a-scene id="escaped-scene" style="display: none">
+    <a-entity>
+      <a-sky>
+        <a-sphere radius="70" position="0 25 0" rotation="0 90 0" src="#sky-limbo"
+          material="side: double; shader:flat;">
+        </a-sphere>
 
-      <a-assets>
-        <img id="sky-limbo" src="sky-limbo.png" />
-        <img id="death-algae" src="Assets/deathalgae.png" />
-        <img id="death-kelp" src="Assets/deathkelp.png" />
-        <img id="escaped" src="Assets/escaped.png" />
-      </a-assets>
+        <a-plane position="0 5 -30" rotation="0 180 0" height="32" width="45" opacity="1">
+          <!--change src to #death-algae, #death-kelp as needed-->
+          <a-image src="#escaped" height="32" width="45" position="0 0 0.2"></a-image>
+        </a-plane>
+      </a-sky>
+    </a-entity>
 
-      <!-- Camera -->
-      <a-entity
-        id="main-camera"
-        camera
-        look-controls
-        position="0 1.6 0"
-        rotation-reader
-        >\
-        <a-cursor color="white" position="0 0 -1"></a-cursor>
-      </a-entity>
-    </a-scene>
-    <script src="main.js"></script>
-  </body>
+    <a-assets>
+      <img id="sky-limbo" src="sky-limbo.png" />
+      <img id="death-algae" src="Assets/deathalgae.png" />
+      <img id="death-kelp" src="Assets/deathkelp.png" />
+      <img id="escaped" src="Assets/escaped.png" />
+    </a-assets>
+
+    <!-- Camera -->
+    <a-entity id="main-camera" camera look-controls position="0 1.6 0" rotation-reader>\
+      <a-cursor color="white" position="0 0 -1"></a-cursor>
+    </a-entity>
+  </a-scene>
+  <script src="main.js"></script>
+</body>
+
 </html>

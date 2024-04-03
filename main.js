@@ -74,7 +74,10 @@ AFRAME.registerComponent("click-kelp", {
     }
 
     document.addEventListener("keydown", function (event) {
-      if (event.key === "h") {
+      if (
+        event.key === "h" &&
+        document.getElementById("main-scene").style.display === "block"
+      ) {
         textbox.object3D.visible = false;
       }
     });
@@ -97,7 +100,10 @@ AFRAME.registerComponent("click-note", {
     textbox.object3D.visible = true;
 
     document.addEventListener("keydown", function (event) {
-      if (event.key === "h") {
+      if (
+        event.key === "h" &&
+        document.getElementById("main-scene").style.display === "block"
+      ) {
         textbox.object3D.visible = false;
       }
     });
@@ -127,7 +133,10 @@ AFRAME.registerComponent("one-min", {
       }, delayInMilliseconds);
 
       document.addEventListener("keydown", function (event) {
-        if (event.key === "h") {
+        if (
+          event.key === "h" &&
+          document.getElementById("main-scene").style.display === "block"
+        ) {
           textbox.object3D.visible = false;
           if (count == 1) {
             next.object3D.visible = true;
@@ -158,7 +167,10 @@ AFRAME.registerComponent("two-min", {
       }, delayInMilliseconds);
 
       document.addEventListener("keydown", function (event) {
-        if (event.key === "h") {
+        if (
+          event.key === "h" &&
+          document.getElementById("main-scene").style.display === "block"
+        ) {
           textbox.object3D.visible = false;
         }
       });

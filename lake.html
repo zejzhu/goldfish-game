@@ -1,4 +1,5 @@
 <html>
+
 <head>
   <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
   <script src="https://unpkg.com/aframe-event-set-component@3.0.3/dist/aframe-event-set-component.min.js"></script>
@@ -6,12 +7,11 @@
 
 <body>
   <script>
-    document.addEventListener("keydown", function (event) {
-       // Check if the event target has the ID "lake-scene"
-       if (event.key === "h" && event.target.id === "lake-scene") {
-         document.getElementById("lake-scene").style.display = "none";
-         document.getElementById("escaped-scene").style.display = "block";
-       }
+    document.addEventListener("keydown", function (event) { //if click h and textbox has not gone away yet, close & trigger end
+      if (event.key === "h") {
+        document.getElementById("lake-scene").style.display = "none";
+        document.getElementById("escaped-scene").style.display = "block";
+      }
     });
     AFRAME.registerComponent('rotation-reader', {
       tick: (function () {
@@ -31,22 +31,17 @@
 
     <!--MYSTERIOUS NARRATOR FISH-->
     <a-entity>
-      <a-plane 
-        position="0 0 -8" width="10" height="3" opacity="1">
-        <a-image 
-        id="txt"
-        class="tile" width="10" height="3" src="#dialogue-narrator"></a-image>
+      <a-plane position="0 0 -8" width="10" height="3" opacity="1">
+        <a-image id="txt" class="tile" width="10" height="3" src="#dialogue-narrator"></a-image>
       </a-plane>
     </a-entity>
-    
+
     </a-entity>
-      <a-sky>
-        <a-sphere radius="70" position="0 25 0" rotation="0 90 0" src="#sky-lake-ending"
-          material="side: double; shader:flat;" color="#FFFFFF"
-          animation__first="property:color; to: #444466; delay:57000; dur: 1000; startEvents: loaded, animationcomplete__second"
-          animation__second="property:color; to: #FFFFFF; delay:1000; dur: 1000; startEvents: animationcomplete__first">
-        </a-sphere>
-      </a-sky>
+    <a-sky>
+      <a-sphere radius="70" position="0 25 0" rotation="0 90 0" src="#sky-lake-ending"
+        material="side: double; shader:flat;" color="#FFFFFF">
+      </a-sphere>
+    </a-sky>
     </a-entity>
 
     <a-assets>
@@ -57,13 +52,7 @@
     </a-assets>
 
     <!-- Camera -->
-    <a-entity
-      id="main-camera"
-      camera
-      look-controls
-      position="0 1.6 0"
-      rotation-reader
-      >\
+    <a-entity id="main-camera" camera look-controls position="0 1.6 0" rotation-reader>\
       <a-cursor color="white" position="0 0 -1"></a-cursor>
     </a-entity>
   </a-scene>

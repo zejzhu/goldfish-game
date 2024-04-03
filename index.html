@@ -158,13 +158,15 @@
         -->
       <a-sky>
         <a-sphere radius="70" position="0 25 0" rotation="0 -45 0" src="#sky-bedroom"
-          animation="property:color; from: #444466; to:#FFFFFF; duration: 9000" material="side: double; shader:flat;">
+          material="side: double; shader:flat;" color="#FFFFFF"
+          animation__first="property:color; to: #444466; delay:57000; dur: 1000; startEvents: loaded, animationcomplete__second"
+          animation__second="property:color; to: #FFFFFF; delay:1000; dur: 1000; startEvents: animationcomplete__first">
         </a-sphere>
       </a-sky>
     </a-entity>
 
     <!-- Camera -->
-    <a-entity id="main-camera" camera look-controls position="0 1.6 0" rotation-reader rotation-reader1>\
+    <a-entity id=" main-camera" camera look-controls position="0 1.6 0" rotation-reader rotation-reader1>\
       <a-cursor color="white" position="0 0 -1"></a-cursor>
     </a-entity>
 

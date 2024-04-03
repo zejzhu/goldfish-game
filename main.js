@@ -110,7 +110,7 @@ AFRAME.registerComponent("one-min", {
     // Wait for model to load.
     var green = document.getElementById("main-scene");
     this.el.addEventListener("model-loaded", () => {
-      var textbox = document.getElementById("you-1");
+      var textbox = document.getElementById("you-2");
       var next = document.getElementById("nar-2");
       var delayInMilliseconds = 60000; //60 seconds
       var count = 0;

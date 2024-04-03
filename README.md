@@ -10,3 +10,6 @@ For PC: the Top Button is 'h'
 
 Our Medium Post about the design and development process:
 https://medium.com/@dlinbec/the-fin-al-straw-3-days-in-the-life-of-a-goldfish-7feee6422ea7
+
+Design sprint started: 3/19/2024
+Design sprint ended:   4/02/2024

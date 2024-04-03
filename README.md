@@ -13,3 +13,5 @@ https://medium.com/@dlinbec/the-fin-al-straw-3-days-in-the-life-of-a-goldfish-7f
 
 Design sprint started: 3/19/2024
 Design sprint ended:   4/02/2024
+
+Reorganizing: WIP

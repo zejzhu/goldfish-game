@@ -187,12 +187,13 @@ AFRAME.registerComponent("three-min", {
 });
 
 // CAMERA ROTATION
-AFRAME.registerComponent("rotation-reader1", { //Shaniah's version (main scene only)
+AFRAME.registerComponent("rotation-reader1", {
+  //Shaniah's version (main scene only)
   tick: function () {
-    var rotation = this.el.getAttribute('rotation');
+    var rotation = this.el.getAttribute("rotation");
     var delayInMilliseconds = 5000; //5 seconds
 
-    var pinkBox = document.getElementById('pinkBox')
+    // var pinkBox = document.getElementById("pinkBox");
 
     if (rotation.x > 45) {
       console.log("Hit threshold");
@@ -201,19 +202,21 @@ AFRAME.registerComponent("rotation-reader1", { //Shaniah's version (main scene o
         bgm.pause();
         document.getElementById("main-scene").style.display = "none";
         document.getElementById("toilet-scene").style.display = "block";
-        triggerToiletSceneAnimations("kelp-scene");
+        triggerToiletSceneAnimations("lake-scene");
       }, delayInMilliseconds);
 
-      setTimeout(function () { pinkBox.setAttribute('color', 'blue'); }, delayInMilliseconds);
+      // setTimeout(function () {
+      //   pinkBox.setAttribute("color", "blue");
+      // }, delayInMilliseconds);
       //SetTimeout(function() {triggerToiletSceneAnimations("kelp-scene");}, delayInMilliseconds);
 
       //works -- TO SUBSTITUTE WITH LAKE ENDING SCENE
-
     }
-  }
+  },
 });
 
-AFRAME.registerComponent('rotation-reader', { //Zenaid's version (all scenes)
+AFRAME.registerComponent("rotation-reader", {
+  //Zenaid's version (all scenes)
   tick: (function () {
     var position = new THREE.Vector3();
     var quaternion = new THREE.Quaternion();
@@ -223,5 +226,5 @@ AFRAME.registerComponent('rotation-reader', { //Zenaid's version (all scenes)
       this.el.object3D.getWorldQuaternion(quaternion);
       // position and rotation now contain vector and quaternion in world space.
     };
-  })()
+  })(),
 });

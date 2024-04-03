@@ -222,7 +222,7 @@
           var third = false;
 
           document.addEventListener("keydown", function (event) {
-            if (event.key === "h") {
+            if (event.key === "h" && document.getElementById("main-scene").style.display === "block") {
               if (first == true) {
                 console.log(first);
                 box1.object3D.visible = false;
@@ -242,6 +242,9 @@
               }
             }
           });
+
+          
+
         });
       };
     </script>
@@ -324,7 +327,7 @@
             setTimeout(function () {
               cameraRig.setAttribute(
                 "animation",
-                "property: rotation; to: 0 1800 0; dur: 5000; easing: linear; loop: false;"
+                "property: rotation; to: 0 1800 0; dur: 4000; easing: linear; loop: false;"
               );
 
               var overlay = document.getElementById("overlay");
@@ -336,6 +339,10 @@
               setTimeout(function () {
                 document.getElementById("toilet-scene").style.display =
                   "none";
+                var overlay = document.getElementById("overlay");
+                if (overlay) {
+                  overlay.remove();
+                }
                 document.getElementById(scene).style.display = "block";
               }, 5000);
             }, 500);
@@ -434,6 +441,66 @@
     <a-entity id="main-camera" camera look-controls position="0 1.6 0" rotation-reader>\
       <a-cursor color="white" position="0 0 -1"></a-cursor>
     </a-entity>
+  </a-scene>
+
+<!-- Lake Scene -->
+  <a-scene id="lake-scene" style="display: none">
+    <a-entity>
+      <a-plane 
+        position="0 0 -8" width="10" height="3" opacity="1">
+        <a-image 
+        id="txt"
+        class="tile" width="10" height="3" src="#dialogue-narrator"></a-image>
+      </a-plane>
+    </a-entity>
+    
+    </a-entity>
+      <a-sky>
+        <a-sphere radius="70" position="0 25 0" rotation="0 90 0" src="#sky-lake-ending"
+          material="side: double; shader:flat;" color="#FFFFFF"
+        </a-sphere>
+      </a-sky>
+    </a-entity>
+
+    <a-assets>
+      <img id="sky-lake-ending" src="sky-lake-ending.png">
+      <img id="sky-bedroom" src="walltest1.png">
+      <img id="dialogue-narrator" src="Assets/dialogues/narrator03.png">
+      <img id="escaped" src="Assets/escaped.png" />
+    </a-assets>
+
+    <!-- Camera -->
+    <a-entity
+      id="main-camera"
+      camera
+      look-controls
+      position="0 1.6 0"
+      rotation-reader
+      >\
+      <a-cursor color="white" position="0 0 -1"></a-cursor>
+    </a-entity>
+    <script>
+      document.addEventListener("keydown", function (event) {
+        // Check if the pressed key is "h" and if the lake-scene is displayed
+        if (event.key === "h" && document.getElementById("lake-scene").style.display === "block") {
+          console.log('pressed');
+          document.getElementById("lake-scene").style.display = "none";
+          document.getElementById("escaped-scene").style.display = "block";
+        }
+      });
+      AFRAME.registerComponent('rotation-reader', {
+        tick: (function () {
+          var position = new THREE.Vector3();
+          var quaternion = new THREE.Quaternion();
+    
+          return function () {
+            this.el.object3D.getWorldPosition(position);
+            this.el.object3D.getWorldQuaternion(quaternion);
+            // position and rotation now contain vector and quaternion in world space.
+          };
+        })()
+      });
+    </script>
   </a-scene>
   <script src="main.js"></script>
 </body>

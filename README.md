@@ -5,7 +5,7 @@ Made for mobile VR with Shinecon headset + controller
 
 Play here:
 https://thefin-alstraw.glitch.me
-For mobile VR: closing dialogue boxes requires a controller mapped to 'h'
+For mobile VR: interacting requires a controller mapped to 'h'
 For PC: the Top Button is 'h'
 
 Our Medium Post about the design and development process:
